@@ -46,7 +46,7 @@ export default function Hero() {
     return `${number}+`;
   };
 
-  // Explore Reviews button
+  
   const handleExploreReviews = () => {
    navigate("/reviews");
   };
@@ -71,7 +71,7 @@ export default function Hero() {
 
         <div className="hero-actions">
 
-          {/* EXPLORE REVIEWS */}
+         
           <button
             className="btn primary"
             type="button"
@@ -80,7 +80,7 @@ export default function Hero() {
             Explore Reviews <ArrowRight size={16} />
           </button>
 
-          {/* JOIN COMMUNITY */}
+         
           <button
             className="btn outline"
             type="button"
