@@ -4,9 +4,6 @@ import Product from "../models/Product.js";
 import cloudinary from "../config/cloudinary.js";
 import { uploadToCloudinary } from "../utils/uploadToCloudinary.js";
 
-// ==========================================
-// GET ALL PRODUCTS
-// ==========================================
 
 export const getProducts = asyncHandler(
   async (req, res) => {
@@ -32,9 +29,7 @@ export const getProducts = asyncHandler(
   }
 );
 
-// ==========================================
-// GET 
-// ==========================================
+
 
 export const getTrendingProducts = asyncHandler(
   async (req, res) => {
@@ -52,9 +47,6 @@ export const getTrendingProducts = asyncHandler(
   }
 );
 
-// ==========================================
-// GET PRODUCT BY ID
-// ==========================================
 
 export const getProductById = asyncHandler(
   async (req, res) => {
@@ -74,8 +66,7 @@ export const getProductById = asyncHandler(
   }
 );
 
-// ==========================================
-// CREATE PRODUCT
+
 // ==========================================
 
 export const createProduct = asyncHandler(
@@ -87,9 +78,7 @@ export const createProduct = asyncHandler(
       skinTypes,
     } = req.body;
 
-    // -----------------------------
-    // BASIC VALIDATION
-    // -----------------------------
+    
 
     if (!name?.trim()) {
       res.status(400);
@@ -123,22 +112,11 @@ export const createProduct = asyncHandler(
       );
     }
 
-    // -----------------------------
-    // SKIN TYPES
-    // -----------------------------
+ 
 
     let parsedSkinTypes = skinTypes;
 
-    /*
-      FormData sends arrays differently.
-      We handle both:
-      
-      skinTypes = ["Oily", "Dry"]
-      
-      and
-      
-      skinTypes = '["Oily","Dry"]'
-    */
+    
 
     if (typeof skinTypes === "string") {
       try {
@@ -160,9 +138,7 @@ export const createProduct = asyncHandler(
       );
     }
 
-    // -----------------------------
-    // UPLOAD TO CLOUDINARY
-    // -----------------------------
+   
 
     const result =
       await uploadToCloudinary(
@@ -170,9 +146,7 @@ export const createProduct = asyncHandler(
         "revly/products"
       );
 
-    // -----------------------------
-    // CREATE PRODUCT
-    // -----------------------------
+   
 
     const product =
       await Product.create({
@@ -194,9 +168,6 @@ export const createProduct = asyncHandler(
   }
 );
 
-// ==========================================
-// SEARCH PRODUCTS
-// ==========================================
 
 export const searchProducts = asyncHandler(async (req, res) => {
   const q = req.query.q?.trim() || "";
