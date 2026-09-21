@@ -25,9 +25,7 @@ export default function ChatWindow({
   const bottomRef = useRef(null);
   const typingTimeoutRef = useRef(null);
 
-  // =================================
-  // FIND OTHER USER
-  // =================================
+ 
 
   const participants = Array.isArray(
     conversation?.participants
@@ -43,9 +41,7 @@ export default function ChatWindow({
 
   const otherUserId = otherUser?._id;
 
-  // =================================
-  // LOAD MESSAGES
-  // =================================
+ 
 
   useEffect(() => {
     if (!conversationId) {
@@ -63,7 +59,7 @@ export default function ChatWindow({
           `/conversations/${conversationId}/messages`
         );
 
-        // Make sure messages is ALWAYS an array
+        
         setMessages(
           Array.isArray(data) ? data : []
         );
@@ -86,9 +82,7 @@ export default function ChatWindow({
     loadMessages();
   }, [conversationId]);
 
-  // =================================
-  // REAL-TIME EVENTS
-  // =================================
+ 
 
   useEffect(() => {
     if (!socket || !conversationId) {
@@ -201,9 +195,7 @@ export default function ChatWindow({
     user?._id,
   ]);
 
-  // =================================
-  // AUTO SCROLL
-  // =================================
+ 
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({
@@ -214,9 +206,7 @@ export default function ChatWindow({
     otherTyping,
   ]);
 
-  // =================================
-  // SEND MESSAGE
-  // =================================
+  
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -274,9 +264,7 @@ export default function ChatWindow({
     );
   };
 
-  // =================================
-  // TYPING
-  // =================================
+ 
 
   const handleTypingInput = (value) => {
     setText(value);
@@ -300,9 +288,7 @@ export default function ChatWindow({
     });
   };
 
-  // =================================
-  // NO CONVERSATION SELECTED
-  // =================================
+ 
 
   if (!conversationId) {
     return (
@@ -319,14 +305,12 @@ export default function ChatWindow({
     );
   }
 
-  // =================================
-  // CHAT UI
-  // =================================
+ 
 
   return (
     <section className="chat-window">
 
-      {/* CHAT HEADER */}
+      
 
       <div className="chat-header">
         <div className="chat-header-avatar">
@@ -355,7 +339,7 @@ export default function ChatWindow({
         </div>
       </div>
 
-      {/* MESSAGES */}
+     
 
       <div className="chat-messages">
 
@@ -429,7 +413,7 @@ export default function ChatWindow({
 
       </div>
 
-      {/* INPUT */}
+    
 
       <form
         className="chat-input"
