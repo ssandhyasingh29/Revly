@@ -9,7 +9,7 @@ import { apiFetch } from "../config/api";
 import "../styles/ProductPage.css";
 
 export default function ProductPage() {
-  // useParams reads the ":id" part of the URL, e.g. /product/64f1... —
+  
   // this is what tells the page WHICH product to load.
   const { id } = useParams();
 
@@ -22,9 +22,7 @@ export default function ProductPage() {
 
   useEffect(() => {
     setLoading(true);
-    // Fetching both at once — the page needs the product details AND
-    // its reviews, and neither depends on the other, so there's no
-    // reason to wait for one before starting the other.
+    // Fetching both at once
     Promise.all([
       apiFetch(`/products/${id}`),
       apiFetch(`/reviews/product/${id}`),
@@ -36,10 +34,9 @@ export default function ProductPage() {
       .finally(() => setLoading(false));
   }, [id]);
 
-  // Called by WriteReviewForm the instant a new review is posted, so it
-  // appears at the top of the list without needing to reload the page.
+  // Called by WriteReviewForm the instant a new review is posted
   const handleReviewAdded = (review) => {
-  // Add new review to the top
+  
   setReviews((prev) => [review, ...prev]);
 
   // Immediately update product rating and review count
