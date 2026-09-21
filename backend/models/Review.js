@@ -24,8 +24,8 @@ const reviewSchema = new mongoose.Schema(
 
     images: [{ type: String }],
 
-    // "♡ 248" in TopReview.jsx — a like is only counted once per user,
-    // so we store who liked it, not just a number.
+    
+    // store who liked it, not just a number.
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 
     verifiedPurchase: { type: Boolean, default: false },
@@ -33,8 +33,7 @@ const reviewSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Overall star rating shown next to the product/user, averaged from the
-// three category ratings above.
+// Overall star rating shown next to the product/user
 reviewSchema.virtual("overallRating").get(function () {
   const { effectiveness, packaging, valueForMoney } = this.ratings;
   return +((effectiveness + packaging + valueForMoney) / 3).toFixed(1);
