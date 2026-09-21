@@ -3,8 +3,7 @@ import Review from "../models/Review.js";
 import Product from "../models/Product.js";
 import User from "../models/User.js";
 
-// Recalculates a product's average rating and review count.
-// Called after any review is created or deleted.
+// Recalculates a product's average rating and review count,Called after any review is created or deleted.
 const recalculateProductStats = async (productId) => {
   const reviews = await Review.find({ product: productId });
 
@@ -35,8 +34,7 @@ const recalculateProductStats = async (productId) => {
   };
 };
 
-// @route   POST /api/reviews
-// @access  Private
+
 export const createReview = asyncHandler(async (req, res) => {
   const {
     product,
@@ -72,13 +70,13 @@ export const createReview = asyncHandler(async (req, res) => {
     $inc: { reviewsCount: 1 },
   });
 
-  // Populate user information
+ 
   const populated = await review.populate(
     "user",
     "username avatar badge"
   );
 
-  // Send the newly calculated product stats to frontend
+
   res.status(201).json({
     ...populated.toObject(),
     productRating: productStats.rating,
@@ -86,8 +84,7 @@ export const createReview = asyncHandler(async (req, res) => {
   });
 });
 
-// @route   GET /api/reviews/product/:productId
-// @access  Public
+
 export const getReviewsForProduct = asyncHandler(
   async (req, res) => {
     const reviews = await Review.find({
@@ -100,8 +97,7 @@ export const getReviewsForProduct = asyncHandler(
   }
 );
 
-// @route   GET /api/reviews/user/:userId
-// @access  Public
+
 export const getReviewsByUser = asyncHandler(
   async (req, res) => {
     const reviews = await Review.find({
@@ -114,8 +110,7 @@ export const getReviewsByUser = asyncHandler(
   }
 );
 
-// @route   GET /api/reviews/top
-// @access  Public
+
 export const getTopReview = asyncHandler(
   async (req, res) => {
     const [topReview] = await Review.aggregate([
@@ -148,8 +143,7 @@ export const getTopReview = asyncHandler(
   }
 );
 
-// @route   POST /api/reviews/:id/like
-// @access  Private
+
 export const toggleLikeReview = asyncHandler(
   async (req, res) => {
     const review = await Review.findById(req.params.id);
@@ -165,7 +159,7 @@ export const toggleLikeReview = asyncHandler(
     );
 
     if (alreadyLiked) {
-      // Unlike
+      
       review.likes = review.likes.filter(
         (id) =>
           id.toString() !==
@@ -176,7 +170,7 @@ export const toggleLikeReview = asyncHandler(
         $inc: { helpfulVotes: -1 },
       });
     } else {
-      // Like
+      
       review.likes.push(req.user._id);
 
       await User.findByIdAndUpdate(review.user, {
@@ -193,8 +187,7 @@ export const toggleLikeReview = asyncHandler(
   }
 );
 
-// @route   DELETE /api/reviews/:id
-// @access  Private
+
 export const deleteReview = asyncHandler(
   async (req, res) => {
     const review = await Review.findById(req.params.id);
