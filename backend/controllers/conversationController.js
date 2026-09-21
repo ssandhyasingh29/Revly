@@ -7,10 +7,7 @@ import {
   getOrCreateConversation,
 } from "../services/messageService.js";
 
-// ============================================
-// GET ALL CONVERSATIONS OF LOGGED-IN USER
-// GET /api/conversations
-// ============================================
+
 
 export const getConversations = asyncHandler(
   async (req, res) => {
@@ -31,7 +28,7 @@ export const getConversations = asyncHandler(
       .sort({ updatedAt: -1 })
       .lean();
 
-    // Always return an array
+   
     res.json(
       Array.isArray(conversations)
         ? conversations
@@ -40,10 +37,7 @@ export const getConversations = asyncHandler(
   }
 );
 
-// ============================================
-// START / GET EXISTING CONVERSATION
-// POST /api/conversations
-// ============================================
+
 
 export const startConversation = asyncHandler(
   async (req, res) => {
@@ -91,10 +85,6 @@ export const startConversation = asyncHandler(
   }
 );
 
-// ============================================
-// GET MESSAGES
-// GET /api/conversations/:id/messages
-// ============================================
 
 export const getMessages = asyncHandler(
   async (req, res) => {
@@ -119,8 +109,7 @@ export const getMessages = asyncHandler(
       );
     }
 
-    // Check whether current user belongs
-    // to this conversation
+    // Check whether current user belongs  to this conversation
     const isParticipant =
       Array.isArray(
         conversation.participants
@@ -172,10 +161,6 @@ export const getMessages = asyncHandler(
   }
 );
 
-// ============================================
-// SEND MESSAGE
-// POST /api/conversations/:id/messages
-// ============================================
 
 export const postMessage = asyncHandler(
   async (req, res) => {
