@@ -24,9 +24,7 @@ export default function AddProductPage() {
   const fileInputRef =
     useRef(null);
 
-  // ==========================================
-  // EXISTING PRODUCT SEARCH
-  // ==========================================
+  
 
   const [search, setSearch] =
     useState("");
@@ -62,9 +60,7 @@ export default function AddProductPage() {
       }
     };
 
-  // ==========================================
-  // FORM DATA
-  // ==========================================
+  
 
   const [formData, setFormData] =
     useState({
@@ -74,9 +70,7 @@ export default function AddProductPage() {
       skinTypes: [],
     });
 
-  // ==========================================
-  // PRODUCT IMAGE
-  // ==========================================
+ 
 
   const [productImage, setProductImage] =
     useState(null);
@@ -87,9 +81,7 @@ export default function AddProductPage() {
   const [submitting, setSubmitting] =
     useState(false);
 
-  // ==========================================
-  // OPTIONS
-  // ==========================================
+ 
 
   const skinTypes = [
     "Oily",
@@ -110,10 +102,7 @@ export default function AddProductPage() {
     "Tools & Others",
   ];
 
-  // ==========================================
-  // NORMAL INPUT CHANGE
-  // ==========================================
-
+  
   const handleChange = (e) => {
     const {
       name,
@@ -126,9 +115,6 @@ export default function AddProductPage() {
     }));
   };
 
-  // ==========================================
-  // SKIN TYPE CHANGE
-  // ==========================================
 
   const handleSkinTypeChange =
     (skinType) => {
@@ -155,9 +141,7 @@ export default function AddProductPage() {
       });
     };
 
-  // ==========================================
-  // IMAGE SELECTION
-  // ==========================================
+ 
 
   const handleImageChange = (
     e
@@ -188,7 +172,7 @@ export default function AddProductPage() {
       return;
     }
 
-    // 5 MB
+   
     if (
       file.size >
       5 * 1024 * 1024
@@ -204,7 +188,7 @@ export default function AddProductPage() {
 
     setProductImage(file);
 
-    // Preview
+    
     const previewUrl =
       URL.createObjectURL(file);
 
@@ -215,9 +199,7 @@ export default function AddProductPage() {
     e.target.value = "";
   };
 
-  // ==========================================
-  // REMOVE SELECTED IMAGE
-  // ==========================================
+ 
 
   const removeSelectedImage =
     () => {
@@ -225,9 +207,7 @@ export default function AddProductPage() {
       setImagePreview("");
     };
 
-  // ==========================================
-  // SUBMIT
-  // ==========================================
+  
 
   const handleSubmit = async (
     e
@@ -271,9 +251,7 @@ export default function AddProductPage() {
     try {
       setSubmitting(true);
 
-      // ======================================
-      // CREATE FORMDATA
-      // ======================================
+     
 
       const data =
         new FormData();
@@ -305,9 +283,7 @@ export default function AddProductPage() {
         productImage
       );
 
-      // ======================================
-      // SEND TO BACKEND
-      // ======================================
+      
 
       const stored =
         localStorage.getItem(
@@ -350,9 +326,7 @@ export default function AddProductPage() {
         );
       }
 
-      // ======================================
-      // SUCCESS
-      // ======================================
+      
 
       showToast(
         "Product added successfully!"
@@ -376,9 +350,7 @@ export default function AddProductPage() {
     }
   };
 
-  // ==========================================
-  // CANCEL
-  // ==========================================
+  
 
   const handleCancel = () => {
     navigate("/");
@@ -393,9 +365,7 @@ export default function AddProductPage() {
       <div className="add-product-container">
         <div className="add-product-card">
 
-          {/* =====================================
-              CHECK EXISTING PRODUCTS
-          ===================================== */}
+         
 
           <section className="existing-product-section">
             <div className="add-product-section-heading">
@@ -415,7 +385,7 @@ export default function AddProductPage() {
               </div>
             </div>
 
-            {/* SEARCH */}
+           
 
             <div className="product-search-box">
               <Search size={20} />
@@ -447,7 +417,7 @@ export default function AddProductPage() {
               )}
             </div>
 
-            {/* SEARCH RESULTS */}
+           
 
             {existingProducts.length >
               0 && (
@@ -501,9 +471,7 @@ export default function AddProductPage() {
             )}
           </section>
 
-          {/* =====================================
-              DIVIDER
-          ===================================== */}
+        
 
           <div className="add-product-divider">
             <span>
@@ -511,9 +479,7 @@ export default function AddProductPage() {
             </span>
           </div>
 
-          {/* =====================================
-              ADD NEW PRODUCT
-          ===================================== */}
+         
 
           <section className="new-product-section">
             <div className="add-product-section-heading">
@@ -533,7 +499,7 @@ export default function AddProductPage() {
               </div>
             </div>
 
-            {/* FORM */}
+            
 
             <form
               className="add-product-form"
@@ -541,7 +507,7 @@ export default function AddProductPage() {
                 handleSubmit
               }
             >
-              {/* PRODUCT NAME */}
+              
 
               <div className="add-product-field">
                 <label>
@@ -562,7 +528,7 @@ export default function AddProductPage() {
                 />
               </div>
 
-              {/* BRAND */}
+             
 
               <div className="add-product-field">
                 <label>
@@ -583,9 +549,7 @@ export default function AddProductPage() {
                 />
               </div>
 
-              {/* =================================
-                  PRODUCT IMAGE
-              ================================= */}
+             
 
               <div className="add-product-field">
                 <label>
@@ -658,7 +622,7 @@ export default function AddProductPage() {
                 </small>
               </div>
 
-              {/* CATEGORY */}
+             
 
               <div className="add-product-field">
                 <label>
@@ -692,9 +656,7 @@ export default function AddProductPage() {
                 </select>
               </div>
 
-              {/* =================================
-                  SKIN TYPES
-              ================================= */}
+              
 
               <div className="add-product-field skin-types-field">
                 <label>
@@ -739,9 +701,7 @@ export default function AddProductPage() {
                 </div>
               </div>
 
-              {/* =================================
-                  BUTTONS
-              ================================= */}
+              
 
               <div className="add-product-actions">
                 <button
