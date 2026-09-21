@@ -51,8 +51,7 @@ const pendingUserSchema = new mongoose.Schema(
   }
 );
 
-// Automatically delete unverified registrations
-// after 10 minutes.
+// Automatically delete unverified registrations after 10 minutes.
 pendingUserSchema.index(
   { otpExpires: 1 },
   { expireAfterSeconds: 0 }
