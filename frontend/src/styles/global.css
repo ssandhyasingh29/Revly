@@ -1,0 +1,194 @@
+/* ================================
+   GLOBAL RESET
+================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #fffafa;
+  color: #292326;
+  line-height: 1.5;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+
+/* ================================
+   REVLY COLORS
+================================ */
+
+:root {
+  --pink: #ed4f87;
+  --pink-dark: #d93670;
+  --pink-light: #fff0f5;
+  --pink-soft: #fff7fa;
+  --pink-border: #f5c9d9;
+
+  --text: #292326;
+  --muted: #777176;
+
+  --white: #ffffff;
+  --border: #f0dfe5;
+
+  --shadow: 0 8px 25px rgba(230, 105, 145, 0.08);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+}
+
+
+/* ================================
+   COMMON BUTTONS
+================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 11px 22px;
+
+  border-radius: 8px;
+
+  font-weight: 600;
+  font-size: 14px;
+
+  transition: 0.2s ease;
+}
+
+.btn.primary {
+  background: var(--pink);
+  color: white;
+}
+
+.btn.primary:hover {
+  background: var(--pink-dark);
+  transform: translateY(-1px);
+}
+
+.btn.outline {
+  background: white;
+  color: var(--pink);
+  border: 1px solid var(--pink-border);
+}
+
+.btn.outline:hover {
+  background: var(--pink-light);
+}
+
+
+/* ================================
+   COMMON SECTION
+================================ */
+
+.section {
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 32px 0;
+}
+
+
+/* ================================
+   SECTION TITLE
+================================ */
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 18px;
+}
+
+.section-title h2 {
+  font-family: Georgia, serif;
+  font-size: 25px;
+}
+
+
+/* ================================
+   LOADING / EMPTY
+================================ */
+
+.loading-text,
+.empty-text {
+  text-align: center;
+  color: var(--muted);
+  padding: 25px;
+}
+
+
+/* ================================
+   TOAST
+================================ */
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 25px;
+
+  transform: translateX(-50%);
+
+  background: #292326;
+  color: white;
+
+  padding: 11px 20px;
+  border-radius: 8px;
+
+  font-size: 14px;
+
+  z-index: 9999;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ================================
+   RESPONSIVE BASE
+================================ */
+
+@media (max-width: 768px) {
+  .section {
+    width: min(100% - 24px, 1200px);
+  }
+}

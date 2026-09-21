@@ -1,0 +1,49 @@
+.user-more-wrapper {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 20;
+}
+
+.user-more-wrapper .more {
+  position: relative;
+  top: auto;
+  right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-more-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+
+  min-width: 130px;
+  padding: 6px;
+
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+
+  z-index: 100;
+}
+
+.user-more-menu button {
+  width: 100%;
+  border: none;
+  background: transparent;
+
+  padding: 9px 12px;
+  border-radius: 7px;
+
+  text-align: left;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.user-more-menu button:hover {
+  background: #fff0f5;
+}

@@ -1,0 +1,13 @@
+#root {
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  background: #fffafa;
+}
+
+.page-container {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+}

@@ -1,0 +1,544 @@
+/* =========================================
+   COMMUNITY BANNER
+   JOIN OUR BEAUTIFUL COMMUNITY
+========================================= */
+
+.community-banner {
+  width: min(1200px, calc(100% - 40px));
+  max-width: 1200px;
+  min-height: 150px;
+
+  margin: 28px auto 55px;
+  padding: 26px 34px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  gap: 28px;
+
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(
+    105deg,
+    #fff0f5 0%,
+    #fff7fa 55%,
+    #ffffff 100%
+  );
+
+  border: 1px solid #f3d9e3;
+  border-radius: 22px;
+
+  box-shadow: 0 8px 28px rgba(210, 85, 125, 0.08);
+}
+
+
+/* =========================================
+   SOFT DECORATIVE CIRCLE
+========================================= */
+
+.community-banner::after {
+  content: "";
+
+  position: absolute;
+  right: -75px;
+  bottom: -110px;
+
+  width: 230px;
+  height: 230px;
+
+  border-radius: 50%;
+
+  background: rgba(239, 105, 145, 0.07);
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   PEOPLE ICONS
+========================================= */
+
+.community-people {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  padding-left: 5px;
+}
+
+.community-people span {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-left: -9px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+  border: 3px solid #ffffff;
+
+  font-size: 25px;
+  line-height: 1;
+
+  box-shadow: 0 5px 14px rgba(210, 85, 125, 0.10);
+
+  position: relative;
+}
+
+.community-people span:first-child {
+  margin-left: 0;
+}
+
+
+/* =========================================
+   COMMUNITY TEXT
+========================================= */
+
+.community-banner > div:nth-child(2) {
+  position: relative;
+  z-index: 2;
+
+  flex: 1;
+  min-width: 0;
+}
+
+.community-banner h2 {
+  margin: 0 0 7px;
+
+  color: #30272c;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.community-banner p {
+  margin: 0;
+
+  max-width: 620px;
+
+  color: #756b70;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.banner-actions {
+  position: relative;
+  z-index: 3;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  flex-shrink: 0;
+}
+
+.banner-actions .btn {
+  min-width: 108px;
+
+  padding: 10px 17px;
+
+  border-radius: 10px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.banner-actions .btn.primary {
+  color: #ffffff;
+
+  background: #ed4f87;
+  border: 1px solid #ed4f87;
+}
+
+.banner-actions .btn.primary:hover {
+  background: #d93670;
+  border-color: #d93670;
+
+  transform: translateY(-1px);
+}
+
+.banner-actions .btn.outline {
+  color: #ed4f87;
+
+  background: #ffffff;
+  border: 1px solid #f19abb;
+}
+
+.banner-actions .btn.outline:hover {
+  background: #fff0f5;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   LOGGED-IN WELCOME BANNER
+   SAME WIDTH + SAME ALIGNMENT
+========================================= */
+
+.welcome-banner {
+  width: min(1200px, calc(100% - 40px));
+  max-width: 1200px;
+  min-height: 150px;
+
+  margin: 28px auto 55px;
+  padding: 26px 34px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  gap: 28px;
+
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(
+    105deg,
+    #fff0f5 0%,
+    #fff7fa 55%,
+    #ffffff 100%
+  );
+
+  border: 1px solid #f3d9e3;
+  border-radius: 22px;
+
+  box-shadow: 0 8px 28px rgba(210, 85, 125, 0.08);
+}
+
+
+/* =========================================
+   WELCOME DECORATION
+========================================= */
+
+.welcome-banner::after {
+  content: "";
+
+  position: absolute;
+  right: -75px;
+  bottom: -110px;
+
+  width: 230px;
+  height: 230px;
+
+  border-radius: 50%;
+
+  background: rgba(239, 105, 145, 0.07);
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   WELCOME AVATAR
+========================================= */
+
+.welcome-avatar-wrapper {
+  position: relative;
+  z-index: 2;
+
+  width: 78px;
+  min-width: 78px;
+  height: 78px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-avatar {
+  width: 64px;
+  height: 64px;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+
+  background: #fdeaf1;
+
+  box-shadow: 0 5px 14px rgba(210, 85, 125, 0.14);
+}
+
+.welcome-avatar img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+
+.welcome-avatar span {
+  color: #e65d8c;
+
+  font-size: 24px;
+  font-weight: 700;
+}
+
+
+/* =========================================
+   WELCOME CONTENT
+========================================= */
+
+.welcome-content {
+  position: relative;
+  z-index: 2;
+
+  flex: 1;
+  min-width: 0;
+}
+
+.welcome-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  margin: 0 0 7px;
+
+  color: #df527f;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 1.4px;
+}
+
+.welcome-content h2 {
+  margin: 0 0 8px;
+
+  color: #30272c;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 25px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.welcome-content h2 span {
+  color: #e65b88;
+}
+
+.welcome-content > p:last-child {
+  max-width: 620px;
+
+  margin: 0;
+
+  color: #756b70;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   WELCOME BUTTONS
+========================================= */
+
+.welcome-actions {
+  position: relative;
+  z-index: 3;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  flex-shrink: 0;
+}
+
+.welcome-actions .btn {
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+  .community-banner,
+  .welcome-banner {
+    width: calc(100% - 40px);
+
+    padding: 24px;
+    gap: 20px;
+  }
+
+  .community-people span {
+    width: 44px;
+    height: 44px;
+
+    font-size: 23px;
+  }
+
+  .community-banner h2,
+  .welcome-content h2 {
+    font-size: 22px;
+  }
+
+  .banner-actions,
+  .welcome-actions {
+    gap: 8px;
+  }
+
+  .banner-actions .btn,
+  .welcome-actions .btn {
+    min-width: 100px;
+    padding: 9px 13px;
+  }
+}
+
+
+/* =========================================
+   SMALL TABLET
+========================================= */
+
+@media (max-width: 750px) {
+  .community-banner,
+  .welcome-banner {
+    flex-wrap: wrap;
+
+    width: calc(100% - 30px);
+
+    padding: 24px;
+  }
+
+  .community-banner > div:nth-child(2),
+  .welcome-content {
+    flex: 1;
+    min-width: 220px;
+  }
+
+  .banner-actions,
+  .welcome-actions {
+    width: 100%;
+
+    justify-content: flex-start;
+
+    margin-top: 4px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .community-banner,
+  .welcome-banner {
+    width: calc(100% - 30px);
+
+    margin-top: 24px;
+    margin-bottom: 40px;
+
+    padding: 22px 18px;
+
+    border-radius: 18px;
+  }
+
+
+  /* JOIN BANNER */
+
+  .community-banner {
+    display: block;
+
+    text-align: center;
+  }
+
+  .community-people {
+    justify-content: center;
+
+    margin-bottom: 16px;
+  }
+
+  .community-people span {
+    width: 43px;
+    height: 43px;
+
+    font-size: 22px;
+  }
+
+  .community-banner > div:nth-child(2) {
+    min-width: 0;
+  }
+
+  .community-banner h2 {
+    font-size: 22px;
+  }
+
+  .community-banner p {
+    font-size: 12px;
+  }
+
+  .banner-actions {
+    justify-content: center;
+
+    margin-top: 18px;
+  }
+
+
+  /* WELCOME BANNER */
+
+  .welcome-banner {
+    display: block;
+
+    text-align: center;
+  }
+
+  .welcome-avatar-wrapper {
+    margin: 0 auto 15px;
+  }
+
+  .welcome-content {
+    min-width: 0;
+  }
+
+  .welcome-eyebrow {
+    justify-content: center;
+  }
+
+  .welcome-content h2 {
+    font-size: 22px;
+  }
+
+  .welcome-content > p:last-child {
+    font-size: 12px;
+  }
+
+  .welcome-actions {
+    justify-content: center;
+
+    margin-top: 18px;
+  }
+}

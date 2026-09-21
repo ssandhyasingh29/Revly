@@ -1,0 +1,510 @@
+/* =========================================
+   PROFILE AVATAR
+========================================= */
+
+.profile-avatar-wrapper {
+  position: relative;
+
+  width: 150px;
+  height: 150px;
+
+  /* Camera button ko cut hone se bachayega */
+  overflow: visible;
+}
+
+.profile-avatar-wrapper.small {
+  width: 90px;
+  height: 90px;
+}
+
+.profile-avatar-wrapper.large {
+  width: 150px;
+  height: 150px;
+}
+
+
+/* =========================================
+   AVATAR CIRCLE
+========================================= */
+
+.profile-avatar {
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+  overflow: hidden;
+
+  background: #ffe8ef;
+
+  border: 4px solid #ffffff;
+
+  box-shadow:
+    0 6px 20px rgba(80, 30, 50, 0.12);
+}
+
+
+/* =========================================
+   AVATAR IMAGE
+========================================= */
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+
+/* =========================================
+   AVATAR PLACEHOLDER
+========================================= */
+
+.profile-avatar-placeholder {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffe1ea;
+  color: #e9799b;
+
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.profile-avatar-wrapper.small
+.profile-avatar-placeholder {
+  font-size: 30px;
+}
+
+
+/* =========================================
+   CAMERA BUTTON
+========================================= */
+
+.change-avatar-btn {
+  position: absolute;
+
+  right: 0;
+  bottom: 2px;
+
+  width: 40px;
+  height: 40px;
+
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* White border makes camera button clear */
+  border: 3px solid #ffffff;
+
+  border-radius: 50%;
+
+  /* BLACK BUTTON */
+  background: #111111;
+
+  /* WHITE CAMERA ICON */
+  color: #ffffff;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.25);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+
+  /* Make sure it stays above avatar */
+  z-index: 20;
+}
+
+.change-avatar-btn:hover {
+  background: #000000;
+  transform: scale(1.06);
+}
+
+.change-avatar-btn:active {
+  transform: scale(0.96);
+}
+
+.change-avatar-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+
+/* =========================================
+   UPLOAD LOADING OVERLAY
+========================================= */
+
+.profile-avatar-loading {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.65);
+
+  border-radius: 50%;
+
+  z-index: 5;
+}
+
+
+/* =========================================
+   LOADING SPINNER
+========================================= */
+
+.avatar-spinner {
+  animation: avatarSpin 0.9s linear infinite;
+}
+
+@keyframes avatarSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================
+   PHOTO CHOICE MODAL
+========================================= */
+
+.avatar-picker-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 10000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(30, 20, 25, 0.45);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+
+/* =========================================
+   MODAL BOX
+========================================= */
+
+.avatar-picker {
+  position: relative;
+
+  width: min(420px, 100%);
+
+  padding: 26px 22px 20px;
+
+  background: #ffffff;
+
+  border: 1px solid #f6dce5;
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 20px 60px rgba(50, 20, 35, 0.20);
+
+  animation: avatarPickerIn 0.2s ease;
+}
+
+
+/* =========================================
+   MODAL CLOSE BUTTON
+========================================= */
+
+.avatar-picker-close {
+  position: absolute;
+
+  top: 14px;
+  right: 14px;
+
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #f8f8f8;
+
+  color: #444444;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.avatar-picker-close:hover {
+  background: #eeeeee;
+}
+
+
+/* =========================================
+   MODAL HEADER
+========================================= */
+
+.avatar-picker-header {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  padding-right: 35px;
+
+  margin-bottom: 22px;
+}
+
+
+/* Pink camera circle */
+
+.avatar-picker-icon {
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #ffe5ed;
+
+  color: #e9799b;
+}
+
+
+/* Header title */
+
+.avatar-picker-header h3 {
+  margin: 0 0 4px;
+
+  color: #222222;
+
+  font-size: 18px;
+
+  font-weight: 700;
+}
+
+
+/* Header subtitle */
+
+.avatar-picker-header p {
+  margin: 0;
+
+  color: #888888;
+
+  font-size: 13px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================
+   PHOTO OPTIONS
+========================================= */
+
+.avatar-picker-options {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+
+/* Each option */
+
+.avatar-picker-options button {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 13px;
+
+  border: 1px solid #eeeeee;
+
+  border-radius: 13px;
+
+  background: #ffffff;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.avatar-picker-options button:hover {
+  background: #fff5f8;
+
+  border-color: #f3c5d4;
+
+  transform: translateY(-1px);
+}
+
+.avatar-picker-options button:active {
+  transform: scale(0.99);
+}
+
+
+/* =========================================
+   OPTION ICON
+========================================= */
+
+.picker-option-icon {
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: #fff0f4;
+
+  color: #e9799b;
+}
+
+
+/* =========================================
+   OPTION TEXT
+========================================= */
+
+.avatar-picker-options strong {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #222222;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.avatar-picker-options small {
+  display: block;
+
+  color: #888888;
+
+  font-size: 12px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================
+   CANCEL BUTTON
+========================================= */
+
+.avatar-picker-cancel {
+  width: 100%;
+
+  margin-top: 14px;
+
+  padding: 11px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #f5f5f5;
+
+  color: #444444;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.avatar-picker-cancel:hover {
+  background: #eeeeee;
+}
+
+
+/* =========================================
+   MODAL ANIMATION
+========================================= */
+
+@keyframes avatarPickerIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(8px)
+      scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .avatar-picker {
+    width: 100%;
+
+    padding:
+      24px
+      18px
+      18px;
+
+    border-radius: 20px;
+  }
+
+  .avatar-picker-header h3 {
+    font-size: 17px;
+  }
+
+  .avatar-picker-header p {
+    font-size: 12px;
+  }
+
+}

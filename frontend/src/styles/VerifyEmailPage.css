@@ -1,0 +1,191 @@
+.verify-email-page {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: linear-gradient(
+    135deg,
+    #fff7fa,
+    #ffeaf2
+  );
+}
+
+.verify-email-card {
+  width: 100%;
+  max-width: 460px;
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 38px 34px;
+  box-shadow: 0 12px 35px rgba(214, 54, 112, 0.12);
+  text-align: center;
+}
+
+.verify-email-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #fff0f5;
+  color: #d93670;
+  font-size: 30px;
+}
+
+.verify-email-card h1 {
+  margin: 0 0 10px;
+  color: #2b2025;
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.verify-email-description {
+  margin: 0;
+  color: #777;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.verify-email-address {
+  display: block;
+  margin: 8px 0 25px;
+  color: #d93670;
+  font-size: 14px;
+  word-break: break-word;
+}
+
+.verify-email-form {
+  text-align: left;
+}
+
+.verify-email-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.verify-email-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  border: 1px solid #ead5dd;
+  border-radius: 12px;
+  background: #fff;
+  color: #333;
+  font-size: 20px;
+  letter-spacing: 7px;
+  text-align: center;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.verify-email-input:focus {
+  border-color: #d93670;
+  box-shadow: 0 0 0 3px rgba(217, 54, 112, 0.1);
+}
+
+.verify-email-input::placeholder {
+  color: #bbb;
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+
+.verify-email-submit {
+  width: 100%;
+  margin-top: 18px;
+  padding: 13px 18px;
+  border: none;
+  border-radius: 12px;
+  background: #d93670;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.verify-email-submit:hover {
+  background: #c62e65;
+}
+
+.verify-email-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.verify-email-error {
+  margin: 0 0 15px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  background: #fff0f0;
+  color: #d64545;
+  font-size: 13px;
+}
+
+.verify-email-success {
+  margin: 0 0 15px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  background: #effaf3;
+  color: #2e8b57;
+  font-size: 13px;
+}
+
+.verify-email-resend {
+  margin-top: 18px;
+  border: none;
+  background: none;
+  color: #d93670;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.verify-email-resend:hover {
+  text-decoration: underline;
+}
+
+.verify-email-resend:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.verify-email-register {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid #f1e3e8;
+  color: #777;
+  font-size: 13px;
+}
+
+.verify-email-register button {
+  margin-left: 5px;
+  border: none;
+  background: none;
+  color: #d93670;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.verify-email-register button:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .verify-email-page {
+    padding: 25px 15px;
+  }
+
+  .verify-email-card {
+    padding: 30px 22px;
+    border-radius: 18px;
+  }
+
+  .verify-email-card h1 {
+    font-size: 23px;
+  }
+}
