@@ -1,9 +1,7 @@
 import React from "react";
 import { Star } from "lucide-react";
 
-// A small, reusable star picker — used three times in WriteReviewForm
-// (Effectiveness, Packaging, Value for Money), so it's its own
-// component instead of copy-pasted three times.
+// A small, reusable star picker 
 export default function StarInput({ label, value, onChange }) {
   return (
     <div className="star-input-row">
