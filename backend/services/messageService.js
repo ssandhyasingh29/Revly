@@ -8,9 +8,7 @@ export const sendMessage = async ({
   conversationId,
   text,
 }) => {
-  // -----------------------------
-  // VALIDATE INPUT
-  // -----------------------------
+ 
 
   if (
     !mongoose.Types.ObjectId.isValid(
@@ -34,9 +32,7 @@ export const sendMessage = async ({
     );
   }
 
-  // -----------------------------
-  // FIND CONVERSATION
-  // -----------------------------
+  
 
   const conversation =
     await Conversation.findById(
@@ -49,10 +45,7 @@ export const sendMessage = async ({
     );
   }
 
-  // -----------------------------
-  // CHECK PARTICIPANTS
-  // -----------------------------
-
+  
   const participants =
     Array.isArray(
       conversation.participants
@@ -79,9 +72,6 @@ export const sendMessage = async ({
     );
   }
 
-  // -----------------------------
-  // CREATE MESSAGE
-  // -----------------------------
 
   const message =
     await Message.create({
@@ -91,9 +81,7 @@ export const sendMessage = async ({
       readBy: [senderId],
     });
 
-  // -----------------------------
-  // UPDATE LAST MESSAGE
-  // -----------------------------
+ 
 
   conversation.lastMessage = {
     text: text.trim(),
@@ -103,9 +91,7 @@ export const sendMessage = async ({
 
   await conversation.save();
 
-  // -----------------------------
-  // POPULATE SENDER
-  // -----------------------------
+
 
   const populated =
     await message.populate(
@@ -113,9 +99,7 @@ export const sendMessage = async ({
       "username avatar"
     );
 
-  // -----------------------------
-  // REAL-TIME MESSAGE
-  // -----------------------------
+ 
 
   if (io) {
     participants.forEach(
@@ -135,9 +119,7 @@ export const sendMessage = async ({
   return populated;
 };
 
-// ========================================
-// GET OR CREATE CONVERSATION
-// ========================================
+
 
 export const getOrCreateConversation = async (
   userAId,
@@ -152,7 +134,7 @@ export const getOrCreateConversation = async (
     );
   }
 
-  // Find existing conversation
+ 
   let conversation =
     await Conversation.findOne({
       participants: {
@@ -164,12 +146,12 @@ export const getOrCreateConversation = async (
       },
     });
 
-  // Return existing
+ 
   if (conversation) {
     return conversation;
   }
 
-  // Create new conversation
+  
   conversation =
     await Conversation.create({
       participants: [
