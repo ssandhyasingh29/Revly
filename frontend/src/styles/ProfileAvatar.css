@@ -8,7 +8,7 @@
   width: 150px;
   height: 150px;
 
-  /* Camera button ko cut hone se bachayega */
+  /* Camera button visible*/
   overflow: visible;
 }
 
