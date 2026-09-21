@@ -25,9 +25,7 @@ import "./styles/ReviewsPage.css";
 import "./styles/ProductExplorePage.css";
 import "./styles/BlogPage.css";
 import "./styles/UserCard.css";
-// Order matters here: SocketProvider is INSIDE AuthProvider because it
-// needs to read `user` from AuthContext (to know when to open/close the
-// live connection — see SocketContext.jsx). ToastProvider wraps
+ ToastProvider wraps
 // everything since both auth and chat show toast messages on errors.
 
 ReactDOM.createRoot(document.getElementById("root")).render(
