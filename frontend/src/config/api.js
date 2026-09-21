@@ -50,7 +50,7 @@ export const uploadAvatar = async (userId, file) => {
             }
           : {}),
       },
-      body: formData, // but not "Content-Type": "multipart/form-data" because The browser automatically creates the correct multipart boundary. 
+      body: formData, //  Let the browser set the multipart boundary automatically.
     }
   );
 
