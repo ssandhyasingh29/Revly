@@ -83,8 +83,7 @@ export default function ProductPage() {
 
       <WriteReviewForm productId={id} onReviewAdded={handleReviewAdded} />
 
-   {/* full image overlay */}         
-
+   
 {showFullImage && (
   <div
     className="full-image-overlay"
