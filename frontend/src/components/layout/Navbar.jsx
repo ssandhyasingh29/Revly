@@ -33,7 +33,7 @@ export default function Navbar() {
   const [searchLoading, setSearchLoading] = useState(false);
   const [showSearchResults, setShowSearchResults] = useState(false);
 
-  // ---------------- NOTIFICATION COUNT ----------------
+ 
 
   useEffect(() => {
     if (!user) {
@@ -63,7 +63,7 @@ export default function Navbar() {
     };
   }, [user]);
 
-  // ---------------- PRODUCT SEARCH ----------------
+ 
 const handleSearchChange = async (e) => {
   const value = e.target.value;
   setQuery(value);
@@ -130,8 +130,7 @@ const submitSearch = async (e) => {
  
 
   
-  // ---------------- LOGOUT ----------------
-
+  
   const handleLogout = () => {
     logout();
     setProfileOpen(false);
@@ -140,7 +139,7 @@ const submitSearch = async (e) => {
     navigate("/");
   };
 
-  // ---------------- PROFILE ----------------
+ 
 
   const openProfile = () => {
     if (!user?._id) return;
@@ -153,7 +152,7 @@ const submitSearch = async (e) => {
     <header className="navbar">
       <div className="nav-inner">
 
-        {/* LOGO */}
+      
 
         <NavLink
           to="/"
@@ -173,7 +172,7 @@ const submitSearch = async (e) => {
           </span>
         </NavLink>
 
-        {/* MOBILE MENU */}
+        
 
         <button
           className="mobile-menu"
@@ -183,11 +182,9 @@ const submitSearch = async (e) => {
           {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
 
-        {/* NAV CONTENT */}
-
+       
         <div className={`nav-content ${mobileOpen ? "open" : ""}`}>
 
-          {/* NAVIGATION */}
 
           <nav className="main-nav">
             <NavLink to="/" end onClick={() => setMobileOpen(false)}>
@@ -238,7 +235,7 @@ const submitSearch = async (e) => {
             
           </nav>
 
-          {/* PRODUCT SEARCH */}
+          
 
           <form className="nav-search" onSubmit={submitSearch}>
             <input
@@ -302,11 +299,11 @@ const submitSearch = async (e) => {
             )}
           </form>
 
-          {/* RIGHT SIDE */}
+         
 
           <div className="nav-actions">
 
-            {/* MESSAGES */}
+           
 
             <button
               className="nav-icon-btn"
@@ -317,7 +314,7 @@ const submitSearch = async (e) => {
               {unreadCount > 0 && <b>{unreadCount}</b>}
             </button>
 
-            {/* NOTIFICATIONS */}
+           
 
             <button
               className="nav-icon-btn"
@@ -328,7 +325,7 @@ const submitSearch = async (e) => {
               {notificationCount > 0 && <b>{notificationCount}</b>}
             </button>
 
-            {/* LOGGED IN */}
+           
 
             {user ? (
               <div className="profile-wrapper">
@@ -357,7 +354,7 @@ const submitSearch = async (e) => {
                 {profileOpen && (
                   <div className="profile-dropdown">
 
-                    {/* USER INFO */}
+                   
 
                     <div className="dropdown-user">
                       {user.avatar ? (
@@ -378,14 +375,14 @@ const submitSearch = async (e) => {
 
                     <div className="dropdown-divider" />
 
-                    {/* MY PROFILE */}
+                   
 
                     <button onClick={openProfile}>
                       <span>👤</span>
                       My Profile
                     </button>
 
-                    {/* ADD PRODUCT */}
+                   
 
                     <button
                       onClick={() => {
@@ -397,7 +394,7 @@ const submitSearch = async (e) => {
                       Add Product
                     </button>
 
-                    {/* SETTINGS */}
+                    
 
                     <button
                       onClick={() => {
@@ -409,7 +406,7 @@ const submitSearch = async (e) => {
                       Settings
                     </button>
 
-                    {/* SAVED REVIEWS */}
+                   
 
                     <button
                       onClick={() => {
@@ -423,7 +420,7 @@ const submitSearch = async (e) => {
 
                     <div className="dropdown-divider" />
 
-                    {/* LOGOUT */}
+                 
 
                     <button className="logout-item" onClick={handleLogout}>
                       <span>↪</span>
@@ -434,7 +431,7 @@ const submitSearch = async (e) => {
                 )}
               </div>
             ) : (
-              /* LOGGED OUT */
+             
 
               <div className="auth-buttons">
                 <button onClick={() => navigate("/login")}>Login</button>
