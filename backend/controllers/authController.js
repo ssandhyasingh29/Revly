@@ -19,8 +19,7 @@ const hashOtp = (otp) => {
     .digest("hex");
 };
 
-// @route POST /api/auth/register
-// @access Public
+
 export const registerUser = asyncHandler(async (req, res) => {
   const { username, email, password, skinType } = req.body;
 
@@ -59,8 +58,7 @@ export const registerUser = asyncHandler(async (req, res) => {
 
   const otp = generateOtp();
 
-  // Save registration temporarily.
-  // This does NOT create a User.
+  // Save registration temporarily, this does NOT create a User.
   const pendingUser = await PendingUser.create({
     username: normalizedUsername,
     email: normalizedEmail,
@@ -101,8 +99,7 @@ export const registerUser = asyncHandler(async (req, res) => {
   });
 });
 
-// @route POST /api/auth/verify-email
-// @access Public
+
 export const verifyEmail = asyncHandler(async (req, res) => {
   const { email, otp } = req.body;
 
@@ -145,7 +142,7 @@ export const verifyEmail = asyncHandler(async (req, res) => {
   // Hash entered OTP
   const hashedOtp = hashOtp(otp.trim());
 
-  // Check OTP
+ 
   if (hashedOtp !== pendingUser.otp) {
     res.status(400);
     throw new Error(
@@ -153,8 +150,7 @@ export const verifyEmail = asyncHandler(async (req, res) => {
     );
   }
 
-  // OTP is correct.
-  // NOW create the actual User.
+  // OTP is correct, NOW create the actual User.
   const user = await User.create({
     username: pendingUser.username,
     email: pendingUser.email,
@@ -178,8 +174,7 @@ export const verifyEmail = asyncHandler(async (req, res) => {
   });
 });
 
-// @route POST /api/auth/resend-verification
-// @access Public
+
 export const resendVerificationEmail = asyncHandler(
   async (req, res) => {
     const { email } = req.body;
@@ -238,8 +233,7 @@ export const resendVerificationEmail = asyncHandler(
   }
 );
 
-// @route POST /api/auth/login
-// @access Public
+
 export const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -283,8 +277,6 @@ export const loginUser = asyncHandler(async (req, res) => {
   });
 });
 
-// @route GET /api/auth/me
-// @access Private
 export const getMe = asyncHandler(async (req, res) => {
   res.json(req.user);
 });
