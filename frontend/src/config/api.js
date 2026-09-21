@@ -1,5 +1,5 @@
 // A tiny helper so every component doesn't repeat the same
-// "attach the token, handle the error" boilerplate on every fetch call.
+
 export const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5001/api";
 
 export const apiFetch = async (path, options = {}) => {
