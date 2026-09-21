@@ -41,7 +41,7 @@ export default function UserCard({ user }) {
     setFollowing(isFollowing);
   }, [user.followers, loggedInUser]);
 
-  // FOLLOW / UNFOLLOW
+ 
   const toggleFollow = async (e) => {
     e.stopPropagation();
 
@@ -68,7 +68,7 @@ export default function UserCard({ user }) {
     }
   };
 
-  // CONFIRMED UNFOLLOW
+  
   const confirmUnfollow = async () => {
     try {
       await apiFetch(`/users/${user._id}/follow`, {
@@ -84,7 +84,7 @@ export default function UserCard({ user }) {
     }
   };
 
-  // MESSAGE
+ 
   const openConversation = async (e) => {
     e.stopPropagation();
 
@@ -126,14 +126,14 @@ export default function UserCard({ user }) {
 
   return (
     <>
-      {/* USER CARD */}
+     
       <article
         className="user-card"
         onClick={() =>
           navigate(`/profile/${user._id}`)
         }
       >
-        {/* MORE BUTTON + MENU */}
+       
         <div className="user-more-wrapper">
           <button
             className="more"
@@ -164,7 +164,7 @@ export default function UserCard({ user }) {
           )}
         </div>
 
-        {/* AVATAR */}
+       
         <div className="user-avatar">
           {user.avatar ? (
             <img
@@ -182,17 +182,17 @@ export default function UserCard({ user }) {
           <span className="online" />
         </div>
 
-        {/* BADGE */}
+        
         {user.badge && (
           <div className="badge">
             {user.badge}
           </div>
         )}
 
-        {/* USERNAME */}
+        
         <h3>@{user.username}</h3>
 
-        {/* SKIN DETAILS */}
+       
         <p>
           {user.skinType || "Beauty Lover"}
 
@@ -201,7 +201,7 @@ export default function UserCard({ user }) {
             : ""}
         </p>
 
-        {/* STATS */}
+       
         <div className="user-stats">
           <span>
             <b>{followersCount}</b>
@@ -214,7 +214,7 @@ export default function UserCard({ user }) {
           </span>
         </div>
 
-        {/* ACTIONS */}
+        
         <div className="user-actions">
           <button
             className={following ? "following" : ""}
@@ -232,7 +232,7 @@ export default function UserCard({ user }) {
         </div>
       </article>
 
-      {/* UNFOLLOW CONFIRMATION MODAL */}
+      
       {showUnfollowModal && (
         <div
           className="unfollow-modal-overlay"
@@ -245,7 +245,7 @@ export default function UserCard({ user }) {
             className="unfollow-modal"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* CLOSE */}
+           
             <button
               className="unfollow-modal-close"
               onClick={() =>
@@ -256,17 +256,17 @@ export default function UserCard({ user }) {
               <X size={18} />
             </button>
 
-            {/* ICON */}
+            
             <div className="unfollow-modal-icon">
               ♡
             </div>
 
-            {/* TITLE */}
+           
             <h2>
               Unfollow @{user.username}?
             </h2>
 
-            {/* DESCRIPTION */}
+            
             <p>
               You won't see their updates in your
               community feed anymore.
@@ -274,7 +274,7 @@ export default function UserCard({ user }) {
               You can follow them again anytime.
             </p>
 
-            {/* BUTTONS */}
+            
             <div className="unfollow-modal-actions">
               <button
                 className="unfollow-cancel-btn"
