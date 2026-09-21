@@ -24,8 +24,8 @@ export default function TopReview() {
     }
     try {
       const result = await apiFetch(`/reviews/${review._id}/like`, { method: "POST" });
-      // Update just the count locally instead of re-fetching the whole
-      // review — cheaper, and the UI updates instantly.
+      // it Update just the count locally instead of re-fetching the whole
+      
       setReview((r) => ({ ...r, likesCount: result.likesCount }));
       showToast(result.liked ? "Marked as helpful!" : "Removed your helpful vote");
     } catch (err) {
