@@ -17,14 +17,13 @@ import upload from "../middleware/upload.js";
 
 const router = express.Router();
 
-// ================= PUBLIC READ ROUTES =================
+
 
 router.get( "/suggested",optionalProtect,getSuggestedUsers);
 router.get("/top-reviewers", getTopReviewers);
 router.get("/", getUsers);
 router.get("/:id", getUserProfile);
 
-// ================= PROTECTED ACTION ROUTES =================
 
 router.put("/:id/avatar",protect,upload.single("avatar"), updateProfileAvatar);
 
