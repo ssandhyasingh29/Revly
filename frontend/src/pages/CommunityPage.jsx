@@ -236,9 +236,7 @@ useEffect(() => {
     setCurrentPage(1);
   };
 
-  /*
-    FOLLOW FROM SUGGESTED PANEL
-  */
+ 
   const handleSuggestedFollow = async (userId) => {
   if (!loggedInUser) {
     showToast("Log in to follow people");
@@ -418,9 +416,6 @@ useEffect(() => {
 
           </div>
 
-          {/* =================================
-              USERS
-          ================================= */}
 
           {loading ? (
             <div className="loading-text">
