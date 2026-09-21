@@ -35,9 +35,7 @@ export default function CommunityPage() {
     sort: "",
   });
 
-  /*
-    FILTER CHANGE
-  */
+ 
   const handleFilterChange = (key, value) => {
     setFilters((prev) => ({
       ...prev,
@@ -47,9 +45,7 @@ export default function CommunityPage() {
     setCurrentPage(1);
   };
 
-  /*
-    RESET FILTERS
-  */
+  
   const handleReset = () => {
     setFilters({
       skinTypes: [],
@@ -62,18 +58,14 @@ export default function CommunityPage() {
     setCurrentPage(1);
   };
 
-  /*
-    LOAD USERS
-  */
+  
   const loadUsers = async () => {
     try {
       setLoading(true);
 
       const params = new URLSearchParams();
 
-      /*
-        SEARCH
-      */
+      
       if (debouncedSearch.trim()) {
   params.set(
     "search",
@@ -81,9 +73,7 @@ export default function CommunityPage() {
   );
 }
 
-      /*
-        SKIN TYPES
-      */
+      
       if (filters.skinTypes.length > 0) {
         params.set(
           "skinTypes",
@@ -91,9 +81,7 @@ export default function CommunityPage() {
         );
       }
 
-      /*
-        SKIN CONCERNS
-      */
+     
       if (filters.skinConcerns.length > 0) {
         params.set(
           "skinConcerns",
@@ -101,9 +89,6 @@ export default function CommunityPage() {
         );
       }
 
-      /*
-        AGE GROUPS
-      */
       if (filters.ageGroups.length > 0) {
         params.set(
           "ageGroups",
@@ -111,9 +96,7 @@ export default function CommunityPage() {
         );
       }
 
-      /*
-        LOCATIONS
-      */
+      
       if (filters.locations.length > 0) {
         params.set(
           "locations",
@@ -121,16 +104,12 @@ export default function CommunityPage() {
         );
       }
 
-      /*
-        SORT
-      */
+      
       if (filters.sort) {
         params.set("sort", filters.sort);
       }
 
-      /*
-        PAGINATION
-      */
+      
       params.set("page", currentPage);
       params.set("limit", 8);
 
@@ -165,9 +144,7 @@ export default function CommunityPage() {
     }
   };
 
-  /*
-    LOAD SUGGESTED USERS
-  */
+  
   const loadSuggestedUsers = async () => {
     try {
       setSuggestedLoading(true);
@@ -193,10 +170,8 @@ export default function CommunityPage() {
     }
   };
 
+  // Wait briefly before searching to avoid an API request on every keystroke.
   
-  /*
-  SEARCH DEBOUNCE
-*/
 useEffect(() => {
   const timer = setTimeout(() => {
     setDebouncedSearch(search);
@@ -207,9 +182,7 @@ useEffect(() => {
   };
 }, [search]);
 
-/*
-  USERS RELOAD
-*/
+
 useEffect(() => {
   loadUsers();
 }, [
@@ -218,15 +191,11 @@ useEffect(() => {
   currentPage,
 ]);
 
-  /*
-    SUGGESTED USERS LOAD ONCE
-  */
+  
  useEffect(() => {
   loadSuggestedUsers();
 }, [loggedInUser?._id]);
-  /*
-    QUICK TABS
-  */
+  
 
   const showAll = () => {
     setFilters({
@@ -315,9 +284,8 @@ useEffect(() => {
 
       <div className="community-layout">
 
-        {/* =================================
-            LEFT SIDEBAR
-        ================================= */}
+        
+       
 
         <Sidebar
           filters={filters}
@@ -327,13 +295,11 @@ useEffect(() => {
           onReset={handleReset}
         />
 
-        {/* =================================
-            CENTER
-        ================================= */}
+       
 
         <main className="community-main">
 
-          {/* HERO */}
+         
 
           <CommunityHero />
 
@@ -343,7 +309,7 @@ useEffect(() => {
 
           <div className="community-topbar">
 
-            {/* SEARCH */}
+            
 
             <div className="community-search">
 
@@ -361,8 +327,7 @@ useEffect(() => {
 
             </div>
 
-            {/* TABS */}
-
+          
             <div className="community-tabs">
 
               <button
@@ -418,7 +383,7 @@ useEffect(() => {
 
             </div>
 
-            {/* SORT */}
+            
 
             <select
               className="community-sort-select"
@@ -487,9 +452,7 @@ useEffect(() => {
             </div>
           )}
 
-          {/* =================================
-              PAGINATION
-          ================================= */}
+         
 
           {totalPages > 1 && (
             <div className="pagination">
@@ -558,13 +521,10 @@ useEffect(() => {
 
         </main>
 
-        {/* =================================
-            RIGHT SIDE
-        ================================= */}
+        
 
         <aside className="community-right">
 
-          {/* SUGGESTED */}
 
           <div className="suggested-panel">
 
@@ -658,7 +618,7 @@ useEffect(() => {
 
           </div>
 
-          {/* INVITE */}
+          
 
           <InviteCard />
 
