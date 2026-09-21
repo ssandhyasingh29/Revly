@@ -82,9 +82,6 @@ export default function Sidebar({
     sort: filters.sort || "",
   });
 
-  /*
-    APPLY ALL CHECKBOX
-  */
 
   const [
     applyChecked,
@@ -116,9 +113,7 @@ export default function Sidebar({
     setApplyChecked(false);
   }, [filters]);
 
-  /*
-    SIDEBAR LINK
-  */
+
 
   const handleLinkClick = (link) => {
     if (
@@ -138,9 +133,6 @@ export default function Sidebar({
     );
   };
 
-  /*
-    CHECKBOX TOGGLE
-  */
 
   const toggleCheckbox = (
     key,
@@ -178,9 +170,7 @@ export default function Sidebar({
     setApplyChecked(false);
   };
 
-  /*
-    SORT RADIO
-  */
+  
 
   const handleSortChange = (
     value
@@ -197,9 +187,7 @@ export default function Sidebar({
     setApplyChecked(false);
   };
 
-  /*
-    APPLY ALL
-  */
+ 
 
   const handleApplyAll = () => {
     onFilterChange(
@@ -234,10 +222,7 @@ export default function Sidebar({
     );
   };
 
-  /*
-    RESET
-  */
-
+ 
   const handleReset = () => {
     const resetFilters = {
       skinTypes: [],
@@ -259,9 +244,7 @@ export default function Sidebar({
   return (
     <aside className="community-sidebar">
 
-      {/* =================================
-          SIDE LINKS
-      ================================= */}
+      
 
       <div className="side-links">
 
@@ -287,10 +270,7 @@ export default function Sidebar({
 
       </div>
 
-      {/* =================================
-          FILTERS
-      ================================= */}
-
+      
       <div className="filters">
 
         <div className="filter-title">
@@ -310,7 +290,7 @@ export default function Sidebar({
 
         </div>
 
-        {/* SKIN TYPE */}
+        
 
         <details open>
 
@@ -343,7 +323,7 @@ export default function Sidebar({
 
         </details>
 
-        {/* SKIN CONCERNS */}
+        
 
         <details>
 
@@ -378,7 +358,7 @@ export default function Sidebar({
 
         </details>
 
-        {/* AGE GROUP */}
+       
 
         <details>
 
@@ -411,7 +391,7 @@ export default function Sidebar({
 
         </details>
 
-        {/* LOCATION */}
+        
 
         <details>
 
@@ -446,7 +426,7 @@ export default function Sidebar({
 
         </details>
 
-        {/* SORT */}
+       
 
         <fieldset>
 
@@ -482,9 +462,7 @@ export default function Sidebar({
 
         </fieldset>
 
-        {/* =================================
-            APPLY ALL
-        ================================= */}
+       
 
         <div className="apply-all-wrapper">
 
