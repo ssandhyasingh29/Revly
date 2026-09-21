@@ -23,8 +23,7 @@ export default function ConversationList({ activeId, onSelect }) {
 
         const data = await apiFetch("/conversations");
 
-        // Backend should return an array.
-        // This also prevents .length errors.
+        
         setConversations(
           Array.isArray(data) ? data : []
         );
