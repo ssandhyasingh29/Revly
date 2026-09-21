@@ -26,8 +26,7 @@ export default function WriteReviewForm({ productId, onReviewAdded }) {
       return;
     }
     // Every category needs a star rating — the backend's Review model
-    // requires all three (see models/Review.js), so catching a missing
-    // one here gives a much clearer message than a generic server error.
+    
     if (!ratings.effectiveness || !ratings.packaging || !ratings.valueForMoney) {
       setError("Please rate all three categories.");
       return;
@@ -46,9 +45,7 @@ export default function WriteReviewForm({ productId, onReviewAdded }) {
       setRatings({ effectiveness: 0, packaging: 0, valueForMoney: 0 });
       setVerifiedPurchase(false);
 
-      // Let the parent page (ProductPage.jsx) add this review to the
-      // list immediately, instead of re-fetching the whole list from
-      // the server just to show the one thing that just changed.
+      // Let the parent page (ProductPage.jsx) add this review to the list immediately instead of re-fetching the whole list from the server 
       onReviewAdded?.(review);
     } catch (err) {
       setError(err.message);
