@@ -119,9 +119,7 @@ export default function ProductExplorePage() {
     loadProducts();
   }, [selectedCategory, selectedSkinType]);
 
-  /* =================================================
-     CATEGORY CHANGE
-  ================================================= */
+ 
 
   const handleCategoryChange = (category) => {
     const params = new URLSearchParams();
@@ -143,9 +141,7 @@ export default function ProductExplorePage() {
     );
   };
 
-  /* =================================================
-     SKIN TYPE CHANGE
-  ================================================= */
+
 
   const handleSkinTypeChange = (skinType) => {
     const params = new URLSearchParams();
@@ -167,9 +163,7 @@ export default function ProductExplorePage() {
     );
   };
 
-  /* =================================================
-     SELECTED CATEGORY ICON
-  ================================================= */
+
 
   const selectedCategoryData =
     categories.find(
@@ -180,16 +174,12 @@ export default function ProductExplorePage() {
   const CategoryIcon =
     selectedCategoryData?.icon || Sparkles;
 
-  /* =================================================
-     PAGE
-  ================================================= */
+ 
 
   return (
     <main className="product-explore-page">
 
-      {/* ================================================= */}
-      {/* HERO */}
-      {/* ================================================= */}
+     
 
       <section className="product-explore-hero">
 
@@ -231,9 +221,7 @@ export default function ProductExplorePage() {
 
         </div>
 
-        {/* ================================================= */}
-        {/* HERO PRODUCT VISUAL */}
-        {/* ================================================= */}
+        
 
         <div className="product-hero-visual">
 
@@ -252,9 +240,7 @@ export default function ProductExplorePage() {
       </section>
 
 
-      {/* ================================================= */}
-      {/* SKIN TYPE FILTER */}
-      {/* ================================================= */}
+      
 
       {selectedSkinType && (
         <section className="product-category-section">
@@ -307,9 +293,7 @@ export default function ProductExplorePage() {
       )}
 
 
-      {/* ================================================= */}
-      {/* CATEGORY SECTION */}
-      {/* ================================================= */}
+     
 
       <section className="product-category-section">
 
@@ -337,7 +321,7 @@ export default function ProductExplorePage() {
         </div>
 
 
-        {/* CATEGORY TABS */}
+       
 
         <div className="product-category-tabs">
 
@@ -366,10 +350,7 @@ export default function ProductExplorePage() {
       </section>
 
 
-      {/* ================================================= */}
-      {/* PRODUCTS SECTION */}
-      {/* ================================================= */}
-
+     
       <section className="product-explore-list">
 
         <div className="product-list-heading">
@@ -417,7 +398,7 @@ export default function ProductExplorePage() {
           </div>
 
 
-          {/* VIEW ALL CATEGORY */}
+         
 
           {selectedCategory !== "All" &&
             products.length > 0 && (
@@ -438,10 +419,7 @@ export default function ProductExplorePage() {
         </div>
 
 
-        {/* ================================================= */}
-        {/* LOADING */}
-        {/* ================================================= */}
-
+        
         {loading && (
           <div className="product-explore-state">
             Loading products...
@@ -449,10 +427,7 @@ export default function ProductExplorePage() {
         )}
 
 
-        {/* ================================================= */}
-        {/* ERROR */}
-        {/* ================================================= */}
-
+      
         {!loading && error && (
           <div className="product-explore-state">
             {error}
@@ -460,10 +435,7 @@ export default function ProductExplorePage() {
         )}
 
 
-        {/* ================================================= */}
-        {/* EMPTY */}
-        {/* ================================================= */}
-
+        
         {!loading &&
           !error &&
           products.length === 0 && (
@@ -499,10 +471,7 @@ export default function ProductExplorePage() {
           )}
 
 
-        {/* ================================================= */}
-        {/* PRODUCTS */}
-        {/* ================================================= */}
-
+      
         {!loading &&
           !error &&
           products.length > 0 && (
