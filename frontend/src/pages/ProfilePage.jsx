@@ -33,9 +33,7 @@ export default function ProfilePage() {
   const [following, setFollowing] = useState(false);
   const [followLoading, setFollowLoading] = useState(false);
 
-  // =========================
-  // EDIT PROFILE
-  // =========================
+ 
 
   const [editingProfile, setEditingProfile] =
     useState(false);
@@ -49,9 +47,7 @@ export default function ProfilePage() {
   const [savingProfile, setSavingProfile] =
     useState(false);
 
-  // =========================
-  // FOLLOWERS / FOLLOWING MODAL
-  // =========================
+ 
 
   const [showPeople, setShowPeople] =
     useState(false);
@@ -59,9 +55,6 @@ export default function ProfilePage() {
   const [peopleType, setPeopleType] =
     useState("followers");
 
-  // =========================
-  // LOAD PROFILE + REVIEWS
-  // =========================
 
   useEffect(() => {
     const loadProfile = async () => {
@@ -124,17 +117,13 @@ export default function ProfilePage() {
     loadProfile();
   }, [id, loggedInUser?._id]);
 
-  // =========================
-  // OWN PROFILE
-  // =========================
+ 
 
   const isOwnProfile =
     String(loggedInUser?._id) ===
     String(id);
 
-  // =========================
-  // START EDITING
-  // =========================
+
 
   const startEditingProfile = () => {
     setEditData({
@@ -147,9 +136,7 @@ export default function ProfilePage() {
     setEditingProfile(true);
   };
 
-  // =========================
-  // EDIT INPUT
-  // =========================
+
 
   const handleEditChange = (field, value) => {
     setEditData((prev) => ({
@@ -158,9 +145,7 @@ export default function ProfilePage() {
     }));
   };
 
-  // =========================
-  // SAVE PROFILE
-  // =========================
+  
 
   const saveProfile = async () => {
     try {
@@ -211,9 +196,7 @@ export default function ProfilePage() {
     }
   };
 
-  // =========================
-  // FOLLOW / UNFOLLOW
-  // =========================
+  
 
   const handleFollowToggle = async () => {
     if (!loggedInUser) {
@@ -283,9 +266,7 @@ export default function ProfilePage() {
     }
   };
 
-  // =========================
-  // OPEN CONVERSATION
-  // =========================
+  
 
   const openConversation = async () => {
     if (!loggedInUser) {
@@ -325,18 +306,14 @@ export default function ProfilePage() {
     }
   };
 
-  // =========================
-  // OPEN FOLLOWERS / FOLLOWING
-  // =========================
+  
 
   const openPeople = (type) => {
     setPeopleType(type);
     setShowPeople(true);
   };
 
-  // =========================
-  // SCROLL TO REVIEWS
-  // =========================
+  
 
   const scrollToReviews = () => {
     document
@@ -347,9 +324,7 @@ export default function ProfilePage() {
       });
   };
 
-  // =========================
-  // LOADING
-  // =========================
+ 
 
   if (loading) {
     return (
@@ -361,9 +336,7 @@ export default function ProfilePage() {
     );
   }
 
-  // =========================
-  // ERROR
-  // =========================
+ 
 
   if (error || !profile) {
     return (
@@ -383,14 +356,12 @@ export default function ProfilePage() {
     );
   }
 
-  // =========================
-  // PROFILE
-  // =========================
+  
 
   return (
     <main className="profile-page">
 
-      {/* BACK */}
+      
 
       <button
         className="profile-back"
@@ -402,9 +373,6 @@ export default function ProfilePage() {
         Back to Community
       </button>
 
-      {/* =========================
-          PROFILE HEADER
-      ========================= */}
 
       <section className="profile-card">
 
@@ -520,13 +488,11 @@ export default function ProfilePage() {
         </div>
       </section>
 
-      {/* =========================
-          PROFILE STATS
-      ========================= */}
+      
 
       <section className="profile-stats">
 
-        {/* REVIEWS */}
+        
 
         <button
           type="button"
@@ -540,7 +506,7 @@ export default function ProfilePage() {
           <span>Reviews</span>
         </button>
 
-        {/* FOLLOWERS */}
+       
 
         <button
           type="button"
@@ -556,7 +522,7 @@ export default function ProfilePage() {
           <span>Followers</span>
         </button>
 
-        {/* FOLLOWING */}
+       
 
         <button
           type="button"
@@ -572,7 +538,7 @@ export default function ProfilePage() {
           <span>Following</span>
         </button>
 
-        {/* HELPFUL */}
+       
 
         <div className="profile-stat-item">
           <strong>
@@ -586,15 +552,11 @@ export default function ProfilePage() {
 
       </section>
 
-      {/* =========================
-          PROFILE CONTENT
-      ========================= */}
+      
 
       <section className="profile-content">
 
-        {/* =========================
-            ABOUT
-        ========================= */}
+        
 
         <div className="profile-section">
 
@@ -674,9 +636,6 @@ export default function ProfilePage() {
 
         </div>
 
-        {/* =========================
-            BEAUTY PROFILE
-        ========================= */}
 
         <div className="profile-section">
 
@@ -822,10 +781,7 @@ export default function ProfilePage() {
 
         </div>
 
-        {/* =========================
-            REVIEWS
-        ========================= */}
-
+       
         <div
           className="profile-section"
           id="profile-reviews-section"
@@ -874,7 +830,7 @@ export default function ProfilePage() {
                     key={review._id}
                   >
 
-                    {/* PRODUCT */}
+                   
 
                     <div className="profile-review-product">
 
@@ -913,25 +869,25 @@ export default function ProfilePage() {
 
                     </div>
 
-                    {/* REVIEW TITLE */}
+                    
 
                     <h4>
                       {review.title}
                     </h4>
 
-                    {/* REVIEW TEXT */}
+                    
 
                     <p>
                       {review.text}
                     </p>
 
-                    {/* RATING */}
+                   
 
                     <div className="profile-review-rating">
                       ⭐ {averageRating}
                     </div>
 
-                    {/* HELPFUL COUNT */}
+                   
 
                     <div className="profile-review-helpful">
                       ♡{" "}
@@ -941,7 +897,7 @@ export default function ProfilePage() {
                       helpful
                     </div>
 
-                    {/* DATE */}
+                   
 
                     <small>
                       {new Date(
@@ -960,9 +916,7 @@ export default function ProfilePage() {
 
       </section>
 
-      {/* =========================
-          FOLLOWERS / FOLLOWING MODAL
-      ========================= */}
+     
 
       {showPeople && (
         <div
