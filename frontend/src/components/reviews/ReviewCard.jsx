@@ -44,9 +44,7 @@ export default function ReviewCard({ review }) {
   return (
     <article className="review-card">
 
-      {/* ================= PRODUCT ================= */}
-
- {/* ================= PRODUCT ================= */}
+     
 
 {review.product && (
   <div className="review-product">
@@ -75,7 +73,7 @@ export default function ReviewCard({ review }) {
   </div>
 )}
 
-      {/* ================= AUTHOR ================= */}
+     
 
       <div className="review-author">
 
@@ -112,14 +110,13 @@ export default function ReviewCard({ review }) {
 
       </div>
 
-      {/* ================= REVIEW ================= */}
+      
 
       <h3>{review.title}</h3>
 
       <p>{review.text}</p>
 
-      {/* ================= RATINGS ================= */}
-
+     
       <div className="review-bars">
 
         {Object.entries(
@@ -146,8 +143,7 @@ export default function ReviewCard({ review }) {
 
       </div>
 
-      {/* ================= FOOTER ================= */}
-
+     
       <div className="review-footer">
 
         <button
