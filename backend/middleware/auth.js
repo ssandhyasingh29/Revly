@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import asyncHandler from "./asyncHandler.js";
 import User from "../models/User.js";
 
-// "protect" runs before any route that requires login (posting a review,
+// "protect" runs before any route that requires login 
 
 export const protect = asyncHandler(async (req, res, next) => {
   let token;
