@@ -133,9 +133,7 @@ userSchema.pre("save", async function (next) {
     return next();
   }
 
-  // If password is already a bcrypt hash
-  // (for example when creating a User after OTP verification),
-  // don't hash it a second time.
+  // If password is already a bcrypt has hashed ,don't hash it a second time.
   const isAlreadyHashed =
     /^\$2[aby]\$\d{2}\$/.test(this.password);
 
