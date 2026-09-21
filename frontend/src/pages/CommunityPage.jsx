@@ -25,16 +25,7 @@ export default function CommunityPage() {
   const [totalPages, setTotalPages] = useState(1);
 
   /*
-    ACTUAL FILTERS
-
-    Sidebar ke checkbox pe click karne se
-    ye immediately change nahi honge.
-
-    Sidebar ke pendingFilters mein temporary
-    selection rahegi.
-
-    Apply button click hone ke baad hi
-    ye filters update honge.
+    Keep sidebar selections local until the user clicks Apply.
   */
   const [filters, setFilters] = useState({
     skinTypes: [],
@@ -150,13 +141,8 @@ export default function CommunityPage() {
       );
 
       /*
-        Backend pagination response:
-        {
-          users: [],
-          currentPage,
-          totalPages,
-          totalUsers
-        }
+        Backend pagination response
+
       */
 
       if (Array.isArray(data)) {
