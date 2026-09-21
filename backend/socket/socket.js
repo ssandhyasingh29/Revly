@@ -11,9 +11,9 @@ const initSocket = (httpServer) => {
     },
   });
 
-  // ============================================
+
   // SOCKET AUTHENTICATION
-  // ============================================
+  
 
   io.use(async (socket, next) => {
     try {
@@ -30,7 +30,7 @@ const initSocket = (httpServer) => {
         process.env.JWT_SECRET
       );
 
-      // Your JWT may contain userId or id
+      //  JWT may contain userId or id
       const userId =
         decoded.userId || decoded.id;
 
@@ -69,9 +69,8 @@ const initSocket = (httpServer) => {
 } 
   });
 
-  // ============================================
   // CONNECTION
-  // ============================================
+  
 
   io.on("connection", (socket) => {
     const userId =
@@ -84,10 +83,9 @@ const initSocket = (httpServer) => {
     // Put user into their personal room
     socket.join(userId);
 
-    // ==========================================
+  
     // SEND MESSAGE
-    // ==========================================
-
+    
     socket.on(
       "sendMessage",
       async (
@@ -115,8 +113,7 @@ const initSocket = (httpServer) => {
               text: text.trim(),
             });
 
-          // Tell sender that message
-          // was successfully saved
+          // Tell sender that message was successfully saved
           callback?.({
             success: true,
             message,
@@ -137,10 +134,7 @@ const initSocket = (httpServer) => {
       }
     );
 
-    // ==========================================
-    // TYPING INDICATOR
-    // ==========================================
-
+    
     socket.on(
       "typing",
       ({
@@ -173,9 +167,7 @@ const initSocket = (httpServer) => {
       }
     );
 
-    // ==========================================
-    // DISCONNECT
-    // ==========================================
+  
 
     socket.on(
       "disconnect",
