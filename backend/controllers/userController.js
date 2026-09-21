@@ -5,10 +5,7 @@ import cloudinary from "../config/cloudinary.js";
 import { uploadToCloudinary } from "../utils/uploadToCloudinary.js";
 
 
-/* =========================================================
-   GET USERS
-   Search + Filters + Sorting + Pagination
-========================================================= */
+
 
 export const getUsers = asyncHandler(async (req, res) => {
   const {
@@ -39,7 +36,7 @@ export const getUsers = asyncHandler(async (req, res) => {
     };
   }
 
-  /* ---------------- SEARCH ---------------- */
+ 
 
   if (search) {
     filter.username = {
@@ -48,8 +45,7 @@ export const getUsers = asyncHandler(async (req, res) => {
     };
   }
 
-  /* ---------------- SKIN TYPE ---------------- */
-
+ 
   if (skinTypes) {
     const selectedSkinTypes = Array.isArray(skinTypes)
       ? skinTypes
@@ -62,7 +58,6 @@ export const getUsers = asyncHandler(async (req, res) => {
     }
   }
 
-  /* ---------------- SKIN CONCERNS ---------------- */
 
   if (skinConcerns) {
     const selectedConcerns = Array.isArray(skinConcerns)
@@ -76,7 +71,7 @@ export const getUsers = asyncHandler(async (req, res) => {
     }
   }
 
-  /* ---------------- AGE GROUP ---------------- */
+ 
 
   if (ageGroups) {
     const selectedAgeGroups = Array.isArray(ageGroups)
@@ -90,8 +85,7 @@ export const getUsers = asyncHandler(async (req, res) => {
     }
   }
 
-  /* ---------------- LOCATION ---------------- */
-
+ 
   if (locations) {
     const selectedLocations = Array.isArray(locations)
       ? locations
@@ -104,8 +98,7 @@ export const getUsers = asyncHandler(async (req, res) => {
     }
   }
 
-  /* ---------------- SORT ---------------- */
-
+ 
   const sortStage = {
     "most-helpful": {
       helpfulVotes: -1,
@@ -127,11 +120,6 @@ export const getUsers = asyncHandler(async (req, res) => {
   let users;
   let total;
 
-  /* =========================================================
-     MOST FOLLOWERS
-     followersCount is a virtual, so calculate it using
-     aggregation.
-  ========================================================= */
 
   if (sort === "most-followers") {
     const pipeline = [
@@ -199,9 +187,6 @@ export const getUsers = asyncHandler(async (req, res) => {
 });
 
 
-/* =========================================================
-   GET USER PROFILE
-========================================================= */
 
 export const getUserProfile = asyncHandler(
   async (req, res) => {
@@ -226,9 +211,7 @@ export const getUserProfile = asyncHandler(
 );
 
 
-/* =========================================================
-   UPDATE USER PROFILE
-========================================================= */
+
 
 export const updateUserProfile = asyncHandler(
   async (req, res) => {
@@ -297,9 +280,7 @@ export const updateUserProfile = asyncHandler(
 );
 
 
-/* =========================================================
-   FOLLOW USER
-========================================================= */
+
 
 export const followUser = asyncHandler(
   async (req, res) => {
@@ -346,7 +327,7 @@ export const followUser = asyncHandler(
 
     await req.user.save();
 
-    /* -------- NOTIFICATION -------- */
+   
 
     await Notification.create({
       recipient: target._id,
@@ -362,9 +343,7 @@ export const followUser = asyncHandler(
 );
 
 
-/* =========================================================
-   UNFOLLOW USER
-========================================================= */
+
 
 export const unfollowUser = asyncHandler(
   async (req, res) => {
@@ -402,9 +381,7 @@ export const unfollowUser = asyncHandler(
 );
 
 
-/* =========================================================
-   SUGGESTED USERS
-========================================================= */
+
 export const getSuggestedUsers = asyncHandler(
   async (req, res) => {
     // Guest user
@@ -420,7 +397,7 @@ export const getSuggestedUsers = asyncHandler(
       return res.json(users);
     }
 
-    // Logged-in user
+   
     const currentUser = await User.findById(req.user._id);
 
     if (!currentUser) {
@@ -437,7 +414,7 @@ export const getSuggestedUsers = asyncHandler(
       },
     };
 
-    // Prefer users with same skin type
+   
     if (currentUser.skinType) {
       filter.skinType = currentUser.skinType;
     }
@@ -450,8 +427,7 @@ export const getSuggestedUsers = asyncHandler(
       })
       .limit(10);
 
-    // If not enough same-skin-type users,
-    // fill with other users
+    
     if (users.length < 10) {
       const existingIds = [
         req.user._id,
@@ -485,9 +461,7 @@ export const getSuggestedUsers = asyncHandler(
       
 
 
-/* =========================================================
-   TOP REVIEWERS
-========================================================= */
+
 
 export const getTopReviewers = asyncHandler(
   async (req, res) => {
