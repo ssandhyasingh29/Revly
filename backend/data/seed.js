@@ -1,7 +1,5 @@
-// Run with: npm run seed
-//
-// Wipes Users and Products collections
-// and inserts sample data.
+
+// Wipes Users and Products collections and inserts sample data.
 
 import dotenv from "dotenv";
 import connectDB from "../config/db.js";
@@ -10,9 +8,6 @@ import Product from "../models/Product.js";
 
 dotenv.config();
 
-// ============================================
-// SAMPLE USERS
-// ============================================
 
 const users = [
   {
