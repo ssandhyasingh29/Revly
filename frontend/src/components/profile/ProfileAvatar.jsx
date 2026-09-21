@@ -25,9 +25,7 @@ export default function ProfileAvatar({
   const [uploading, setUploading] = useState(false);
   const [showPicker, setShowPicker] = useState(false);
 
-  // =========================
-  // HANDLE IMAGE SELECTION
-  // =========================
+ 
   const handleFileChange = async (e) => {
     const file = e.target.files?.[0];
 
@@ -39,7 +37,6 @@ export default function ProfileAvatar({
       "image/webp",
     ];
 
-    // Check file type
     if (!allowedTypes.includes(file.type)) {
       showToast(
         "Please select a JPG, PNG, or WebP image"
@@ -49,7 +46,7 @@ export default function ProfileAvatar({
       return;
     }
 
-    // Check file size
+   
     if (file.size > 5 * 1024 * 1024) {
       showToast("Image must be smaller than 5 MB");
 
@@ -66,7 +63,7 @@ export default function ProfileAvatar({
         file
       );
 
-      // Update ProfilePage + AuthContext
+      
       onAvatarUpdated(data.avatar);
 
       showToast(
@@ -90,9 +87,7 @@ export default function ProfileAvatar({
     }
   };
 
-  // =========================
-  // OPEN PHOTO SELECTOR
-  // =========================
+ 
   const openChangePhoto = () => {
     if (uploading) return;
 
@@ -101,9 +96,7 @@ export default function ProfileAvatar({
     fileInputRef.current?.click();
   };
 
-  // =========================
-  // REMOVE PROFILE PHOTO
-  // =========================
+ 
   const handleRemovePhoto = async () => {
     if (uploading) return;
 
@@ -136,9 +129,7 @@ export default function ProfileAvatar({
     }
   };
 
-  // =========================
-  // OPEN CAMERA BUTTON MENU
-  // =========================
+  
   const openChangePhotoMenu = () => {
     if (uploading) return;
 
@@ -147,9 +138,7 @@ export default function ProfileAvatar({
 
   return (
     <>
-      {/* =========================
-          PROFILE AVATAR
-      ========================= */}
+    
       <div
         className={`profile-avatar-wrapper ${size}`}
       >
@@ -167,7 +156,7 @@ export default function ProfileAvatar({
             </div>
           )}
 
-          {/* Loading overlay */}
+          
           {uploading && (
             <div className="profile-avatar-loading">
               <LoaderCircle
@@ -178,9 +167,7 @@ export default function ProfileAvatar({
           )}
         </div>
 
-        {/* =========================
-            BLACK CAMERA BUTTON
-        ========================= */}
+       
         <button
           type="button"
           className="change-avatar-btn"
@@ -198,9 +185,7 @@ export default function ProfileAvatar({
           )}
         </button>
 
-        {/* =========================
-            NATIVE FILE / CAMERA INPUT
-        ========================= */}
+        
         <input
           ref={fileInputRef}
           type="file"
@@ -211,9 +196,7 @@ export default function ProfileAvatar({
         />
       </div>
 
-      {/* =========================
-          CHANGE PHOTO MENU
-      ========================= */}
+     
       {showPicker && (
         <div
           className="avatar-picker-overlay"
@@ -223,7 +206,7 @@ export default function ProfileAvatar({
             className="avatar-picker"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close button */}
+            
             <button
               type="button"
               className="avatar-picker-close"
@@ -233,7 +216,7 @@ export default function ProfileAvatar({
               <X size={20} />
             </button>
 
-            {/* Header */}
+           
             <div className="avatar-picker-header">
               <div className="avatar-picker-icon">
                 <Camera size={22} />
@@ -251,10 +234,10 @@ export default function ProfileAvatar({
               </div>
             </div>
 
-            {/* Options */}
+           
             <div className="avatar-picker-options">
 
-              {/* CHANGE PHOTO */}
+              
               <button
                 type="button"
                 onClick={openChangePhoto}
@@ -274,7 +257,7 @@ export default function ProfileAvatar({
                 </span>
               </button>
 
-              {/* REMOVE PHOTO */}
+              
               {user.avatar && (
                 <button
                   type="button"
@@ -299,7 +282,7 @@ export default function ProfileAvatar({
               )}
             </div>
 
-            {/* Cancel */}
+        
             <button
               type="button"
               className="avatar-picker-cancel"
