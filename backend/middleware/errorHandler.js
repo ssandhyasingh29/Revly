@@ -1,11 +1,9 @@
-// Catches every error passed via next(err) — from asyncHandler, from
-// throw statements in controllers, or from Express itself — and turns
-// it into one consistent JSON shape instead of leaking a stack trace.
+// Catches every error passed via next(err) — from asyncHandler
 export const errorHandler = (err, req, res, next) => {
   let statusCode = res.statusCode === 200 ? 500 : res.statusCode;
   let message = err.message || "Server Error";
 
-  // Mongoose "invalid ObjectId" error → treat as a 404, not a 500
+  
   if (err.name === "CastError") {
     statusCode = 404;
     message = "Resource not found";
