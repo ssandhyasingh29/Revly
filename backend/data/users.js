@@ -106,9 +106,7 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-// ============================================
-// CHECK PASSWORD
-// ============================================
+
 
 userSchema.methods.matchPassword =
   async function (enteredPassword) {
@@ -118,9 +116,7 @@ userSchema.methods.matchPassword =
     );
   };
 
-// ============================================
-// VIRTUAL COUNTS
-// ============================================
+
 
 userSchema.virtual("followersCount").get(
   function () {
@@ -138,9 +134,6 @@ userSchema.virtual("followingCount").get(
   }
 );
 
-// ============================================
-// INCLUDE VIRTUALS IN JSON
-// ============================================
 
 userSchema.set("toJSON", {
   virtuals: true,
