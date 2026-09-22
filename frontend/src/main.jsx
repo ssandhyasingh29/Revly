@@ -25,8 +25,6 @@ import "./styles/ReviewsPage.css";
 import "./styles/ProductExplorePage.css";
 import "./styles/BlogPage.css";
 import "./styles/UserCard.css";
- ToastProvider wraps
-// everything since both auth and chat show toast messages on errors.
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
