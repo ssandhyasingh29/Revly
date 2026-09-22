@@ -38,23 +38,30 @@ export default function TopReview() {
 
   return (
     <section className="review-card">
-      <div className="review-author">
-        {review.user.avatar ? (
-        <img
-        src={review.user.avatar}
-        alt={review.user.username}
-        />
-         ) : (
-       <span className="avatar-placeholder">
-       {review.user.username?.charAt(0).toUpperCase()}
-       </span>
-       )}
-        <div>
-          <strong>@{review.user.username}</strong>
-          {review.user.badge && <span>{review.user.badge}</span>}
-          <small>{new Date(review.createdAt).toLocaleDateString()}</small>
-        </div>
-      </div>
+     <div className="review-author">
+  {review.user?.avatar ? (
+    <img
+      src={review.user.avatar}
+      alt={review.user.username}
+    />
+  ) : (
+    <span className="avatar-placeholder">
+      {review.user?.username?.charAt(0).toUpperCase() || "U"}
+    </span>
+  )}
+
+  <div>
+    <strong>@{review.user?.username || "User"}</strong>
+
+    {review.user?.badge && (
+      <span>{review.user.badge}</span>
+    )}
+
+    <small>
+      {new Date(review.createdAt).toLocaleDateString()}
+    </small>
+  </div>
+</div>
       <h3>{review.title}</h3>
       <p>{review.text}</p>
       <div className="review-body">
