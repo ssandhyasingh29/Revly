@@ -6,18 +6,8 @@ import PendingUser from "../models/PendingUser.js";
 import generateToken from "../utils/generateToken.js";
 import { sendVerificationEmail } from "../utils/sendEmail.js";
 
-const generateOtp = () => {
-  return Math.floor(
-    100000 + Math.random() * 900000
-  ).toString();
-};
-
-const hashOtp = (otp) => {
-  return crypto
-    .createHash("sha256")
-    .update(otp)
-    .digest("hex");
-};
+const FRONTEND_URL =
+  process.env.CLIENT_URL || "http://localhost:5173";
 
 
 export const registerUser = asyncHandler(async (req, res) => {
@@ -56,25 +46,37 @@ export const registerUser = asyncHandler(async (req, res) => {
     ],
   });
 
-  const otp = generateOtp();
+  // Generate a secure random verification token
+  const verificationToken =
+    crypto.randomBytes(32).toString("hex");
 
-  // Save registration temporarily, this does NOT create a User.
+  // Save temporary registration
   const pendingUser = await PendingUser.create({
     username: normalizedUsername,
     email: normalizedEmail,
     password,
     skinType,
-    otp: hashOtp(otp),
-    otpExpires: new Date(
-      Date.now() + 10 * 60 * 1000
+
+    verificationToken: crypto
+      .createHash("sha256")
+      .update(verificationToken)
+      .digest("hex"),
+
+    verificationTokenExpires: new Date(
+      Date.now() + 60 * 60 * 1000
     ),
   });
+
+
+  const verificationUrl =
+    `${FRONTEND_URL}/verify-email?token=${verificationToken}&email=${encodeURIComponent(
+      normalizedEmail
+    )}`;
 
   try {
     await sendVerificationEmail(
       pendingUser.email,
-      pendingUser.username,
-      otp
+      verificationUrl
     );
   } catch (error) {
     await PendingUser.findByIdAndDelete(
@@ -94,39 +96,45 @@ export const registerUser = asyncHandler(async (req, res) => {
 
   res.status(201).json({
     message:
-      "Verification code sent to your email.",
+      "Verification link sent to your email.",
     email: pendingUser.email,
   });
 });
 
 
 export const verifyEmail = asyncHandler(async (req, res) => {
-  const { email, otp } = req.body;
+  const { email, token } = req.body;
 
-  if (!email || !otp) {
+  if (!email || !token) {
     res.status(400);
     throw new Error(
-      "Email and verification code are required"
+      "Email and verification token are required"
     );
   }
 
   const normalizedEmail = email.toLowerCase().trim();
 
+  const hashedToken = crypto
+    .createHash("sha256")
+    .update(token)
+    .digest("hex");
+
   // Find temporary registration
   const pendingUser = await PendingUser.findOne({
     email: normalizedEmail,
+    verificationToken: hashedToken,
   });
 
   if (!pendingUser) {
     res.status(404);
     throw new Error(
-      "Registration not found or verification code has expired. Please register again."
+      "Invalid or expired verification link. Please register again."
     );
   }
 
-  // Check OTP expiry
+  // Check token expiry
   if (
-    pendingUser.otpExpires.getTime() <
+    pendingUser.verificationTokenExpires.getTime() <
     Date.now()
   ) {
     await PendingUser.findByIdAndDelete(
@@ -135,22 +143,11 @@ export const verifyEmail = asyncHandler(async (req, res) => {
 
     res.status(400);
     throw new Error(
-      "Verification code has expired. Please register again."
+      "Verification link has expired. Please register again."
     );
   }
 
-  // Hash entered OTP
-  const hashedOtp = hashOtp(otp.trim());
-
- 
-  if (hashedOtp !== pendingUser.otp) {
-    res.status(400);
-    throw new Error(
-      "Invalid verification code"
-    );
-  }
-
-  // OTP is correct, NOW create the actual User.
+  // Token is correct, now create actual User
   const user = await User.create({
     username: pendingUser.username,
     email: pendingUser.email,
@@ -164,7 +161,7 @@ export const verifyEmail = asyncHandler(async (req, res) => {
     pendingUser._id
   );
 
-  // Login user automatically after verification
+  // Automatically login user
   res.json({
     _id: user._id,
     username: user.username,
@@ -186,7 +183,6 @@ export const resendVerificationEmail = asyncHandler(
 
     const normalizedEmail = email.toLowerCase().trim();
 
-    // Find temporary registration
     const pendingUser = await PendingUser.findOne({
       email: normalizedEmail,
     });
@@ -198,21 +194,32 @@ export const resendVerificationEmail = asyncHandler(
       );
     }
 
-    const otp = generateOtp();
+    // Generate new secure token
+    const verificationToken =
+      crypto.randomBytes(32).toString("hex");
 
-    pendingUser.otp = hashOtp(otp);
+    pendingUser.verificationToken =
+      crypto
+        .createHash("sha256")
+        .update(verificationToken)
+        .digest("hex");
 
-    pendingUser.otpExpires = new Date(
-      Date.now() + 10 * 60 * 1000
-    );
+    pendingUser.verificationTokenExpires =
+      new Date(
+        Date.now() + 60 * 60 * 1000
+      );
 
     await pendingUser.save();
+
+    const verificationUrl =
+      `${FRONTEND_URL}/verify-email?token=${verificationToken}&email=${encodeURIComponent(
+        normalizedEmail
+      )}`;
 
     try {
       await sendVerificationEmail(
         pendingUser.email,
-        pendingUser.username,
-        otp
+        verificationUrl
       );
     } catch (error) {
       console.error(
@@ -228,7 +235,7 @@ export const resendVerificationEmail = asyncHandler(
 
     res.json({
       message:
-        "A new verification code has been sent.",
+        "A new verification link has been sent.",
     });
   }
 );
@@ -276,6 +283,7 @@ export const loginUser = asyncHandler(async (req, res) => {
     token: generateToken(user._id),
   });
 });
+
 
 export const getMe = asyncHandler(async (req, res) => {
   res.json(req.user);

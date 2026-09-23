@@ -36,12 +36,12 @@ const pendingUserSchema = new mongoose.Schema(
       ],
     },
 
-    otp: {
+    verificationToken: {
       type: String,
       required: true,
     },
 
-    otpExpires: {
+    verificationTokenExpires: {
       type: Date,
       required: true,
     },
@@ -51,9 +51,9 @@ const pendingUserSchema = new mongoose.Schema(
   }
 );
 
-// Automatically delete unverified registrations after 10 minutes.
+// Automatically delete unverified registrations after the verification token expires.
 pendingUserSchema.index(
-  { otpExpires: 1 },
+  { verificationTokenExpires: 1 },
   { expireAfterSeconds: 0 }
 );
 

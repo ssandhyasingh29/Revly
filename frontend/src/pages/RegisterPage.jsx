@@ -160,7 +160,7 @@ export default function RegisterPage() {
             disabled={loading}
           >
             {loading
-              ? "Sending verification code..."
+              ? "Sending verification link..."
               : "Create Account"}
           </button>
         </form>

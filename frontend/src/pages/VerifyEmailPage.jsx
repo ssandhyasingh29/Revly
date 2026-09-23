@@ -1,77 +1,119 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef ,useState } from "react";
 import { Mail } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import {
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
+
 import { useAuth } from "../context/AuthContext";
 
 import "../styles/VerifyEmailPage.css";
 
 export default function VerifyEmailPage() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   const {
+    user,
     verifyEmail,
     resendVerificationEmail,
   } = useAuth();
 
   const [email, setEmail] = useState("");
-  const [otp, setOtp] = useState("");
-
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [resending, setResending] = useState(false);
 
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const [hasToken, setHasToken] = useState(false);
+  const verificationStarted = useRef(false);
+
   useEffect(() => {
+  if (hasToken) return;
+
+  if (user) {
+    navigate("/");
+  }
+}, [hasToken, user, navigate]);
+
+  useEffect(() => {
+    const token = searchParams.get("token");
+    const emailFromUrl = searchParams.get("email");
+
+    /*
+
+      User clicked the verification link
+      inside the email.
+    */
+    if (token && emailFromUrl) {
+      if (verificationStarted.current) return;
+
+     verificationStarted.current = true;
+
+      const decodedEmail =
+        decodeURIComponent(emailFromUrl);
+
+      setEmail(decodedEmail);
+      setHasToken(true);
+      setLoading(true);
+
+      const verify = async () => {
+        try {
+          setError("");
+          setSuccess("");
+
+          await verifyEmail(
+            decodedEmail,
+            token
+          );
+
+          localStorage.removeItem(
+            "revlyVerificationEmail"
+          );
+
+          setSuccess(
+            "Email verified successfully! Welcome to Revly 💗"
+          );
+
+          setTimeout(() => {
+            navigate("/");
+          }, 1200);
+        } catch (err) {
+          setError(
+            err.message ||
+              "Verification failed. Please try again."
+          );
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      verify();
+
+      return;
+    }
+
+    /*
+
+      User has just registered,
+      There is no token yet because the
+      token only arrives when they click
+      the email verification link.
+    */
     const savedEmail = localStorage.getItem(
       "revlyVerificationEmail"
     );
 
-    if (!savedEmail) {
-      navigate("/register");
-      return;
+    if (savedEmail) {
+      setEmail(savedEmail);
     }
-
-    setEmail(savedEmail);
-  }, [navigate]);
-
-  const handleVerify = async (e) => {
-    e.preventDefault();
-
-    setError("");
-    setSuccess("");
-
-    if (otp.length !== 6) {
-      setError(
-        "Please enter the 6-digit verification code."
-      );
-      return;
-    }
-
-    try {
-      setLoading(true);
-
-      await verifyEmail(email, otp);
-
-      localStorage.removeItem(
-        "revlyVerificationEmail"
-      );
-
-      setSuccess(
-        "Email verified successfully! 💗"
-      );
-
-      setTimeout(() => {
-        navigate("/");
-      }, 700);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [searchParams, verifyEmail, navigate]);
 
   const handleResend = async () => {
+    if (!email) return;
+
     setError("");
     setSuccess("");
 
@@ -80,18 +122,111 @@ export default function VerifyEmailPage() {
 
       await resendVerificationEmail(email);
 
-      setOtp("");
-
       setSuccess(
-        "A new verification code has been sent! 💗"
+        "A new verification link has been sent to your email! 💗"
       );
     } catch (err) {
-      setError(err.message);
+      setError(
+        err.message ||
+          "Could not resend verification email."
+      );
     } finally {
       setResending(false);
     }
   };
 
+  /*
+    No token = waiting for the user to
+    click the link in their email.
+  */
+  if (!hasToken) {
+    return (
+      <div className="verify-email-page">
+        <div className="verify-email-card">
+
+          <div className="verify-email-icon">
+            <Mail size={30} />
+          </div>
+
+          <h1>Check Your Email 💗</h1>
+
+          <p className="verify-email-description">
+            We've sent a verification link to
+          </p>
+
+          {email && (
+            <strong className="verify-email-address">
+              {email}
+            </strong>
+          )}
+
+          <p className="verify-email-description">
+            Please open your email and click
+            <strong> "Verify My Email"</strong> to
+            activate your Revly account.
+          </p>
+
+          {error && (
+            <p className="verify-email-error">
+              {error}
+            </p>
+          )}
+
+          {success && (
+            <p className="verify-email-success">
+              {success}
+            </p>
+          )}
+
+          <button
+            type="button"
+            className="verify-email-resend"
+            onClick={handleResend}
+            disabled={resending || !email}
+          >
+            {resending
+              ? "Sending..."
+              : "Resend verification link"}
+          </button>
+
+          <div className="verify-email-register">
+            Didn't receive the email?
+
+            <button
+              type="button"
+              onClick={handleResend}
+              disabled={resending || !email}
+            >
+              Resend
+            </button>
+          </div>
+
+          <div className="verify-email-register">
+            Wrong email?
+
+            <button
+              type="button"
+              onClick={() => {
+                localStorage.removeItem(
+                  "revlyVerificationEmail"
+                );
+
+                navigate("/register");
+              }}
+            >
+              Register again
+            </button>
+          </div>
+
+        </div>
+      </div>
+    );
+  }
+
+  /*
+    Token exists = user clicked the email
+    verification link.
+  */
   return (
     <div className="verify-email-page">
       <div className="verify-email-card">
@@ -102,86 +237,83 @@ export default function VerifyEmailPage() {
 
         <h1>Verify Your Email 💗</h1>
 
-        <p className="verify-email-description">
-          We've sent a 6-digit verification code to
-        </p>
+        {loading && (
+          <>
+            <p className="verify-email-description">
+              Verifying your email address...
+            </p>
 
-        <strong className="verify-email-address">
-          {email}
-        </strong>
-
-        {error && (
-          <p className="verify-email-error">
-            {error}
-          </p>
+            <p className="verify-email-success">
+              Please wait 💗
+            </p>
+          </>
         )}
 
-        {success && (
-          <p className="verify-email-success">
-            {success}
-          </p>
+        {!loading && success && (
+          <>
+            <p className="verify-email-description">
+              Your email address has been verified
+              successfully.
+            </p>
+
+            {email && (
+              <strong className="verify-email-address">
+                {email}
+              </strong>
+            )}
+
+            <p className="verify-email-success">
+              {success}
+            </p>
+          </>
         )}
 
-        <form
-          className="verify-email-form"
-          onSubmit={handleVerify}
-        >
-          <label htmlFor="verification-code">
-            Verification Code
-          </label>
+        {!loading && error && (
+          <>
+            <p className="verify-email-description">
+              We couldn't verify your email address.
+            </p>
 
-          <input
-            id="verification-code"
-            className="verify-email-input"
-            type="text"
-            inputMode="numeric"
-            maxLength={6}
-            placeholder="000000"
-            autoComplete="one-time-code"
-            value={otp}
-            onChange={(e) =>
-              setOtp(
-                e.target.value
-                  .replace(/\D/g, "")
-                  .slice(0, 6)
-              )
-            }
-          />
+            {email && (
+              <strong className="verify-email-address">
+                {email}
+              </strong>
+            )}
 
-          <button
-            type="submit"
-            className="verify-email-submit"
-            disabled={loading}
-          >
-            {loading
-              ? "Verifying..."
-              : "Verify Email"}
-          </button>
-        </form>
+            <p className="verify-email-error">
+              {error}
+            </p>
 
-        <button
-          type="button"
-          className="verify-email-resend"
-          onClick={handleResend}
-          disabled={resending}
-        >
-          {resending
-            ? "Sending..."
-            : "Resend verification code"}
-        </button>
+            <button
+              type="button"
+              className="verify-email-resend"
+              onClick={handleResend}
+              disabled={resending}
+            >
+              {resending
+                ? "Sending..."
+                : "Send verification link again"}
+            </button>
+          </>
+        )}
 
         <div className="verify-email-register">
           Wrong email?
 
           <button
             type="button"
-            onClick={() =>
-              navigate("/register")
-            }
+            onClick={() => {
+              localStorage.removeItem(
+                "revlyVerificationEmail"
+              );
+
+              navigate("/register");
+            }}
           >
             Register again
           </button>
         </div>
+
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, {
   createContext,
   useContext,
+  useEffect,
   useState,
 } from "react";
 
@@ -16,6 +17,32 @@ export function AuthProvider({ children }) {
       ? JSON.parse(savedUser)
       : null;
   });
+
+  useEffect(() => {
+    const handleStorageChange = (event) => {
+      if (event.key !== "revlyUser") return;
+
+      if (event.newValue) {
+        const updatedUser = JSON.parse(event.newValue);
+        setUser(updatedUser);
+      } else {
+        setUser(null);
+      }
+    };
+
+    window.addEventListener(
+      "storage",
+      handleStorageChange
+    );
+
+    return () => {
+      window.removeEventListener(
+        "storage",
+        handleStorageChange
+      );
+    };
+  }, []);
+
 
   const login = async (email, password) => {
     const data = await apiFetch("/auth/login", {
@@ -55,14 +82,14 @@ export function AuthProvider({ children }) {
     return data;
   };
 
-  const verifyEmail = async (email, otp) => {
+  const verifyEmail = async (email, token) => {
     const data = await apiFetch(
       "/auth/verify-email",
       {
         method: "POST",
         body: JSON.stringify({
           email,
-          otp,
+          token,
         }),
       }
     );
