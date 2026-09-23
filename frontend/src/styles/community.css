@@ -1641,3 +1641,154 @@ font-weight: 700;
     padding: 25px 20px;
   }
 }
+/* =========================================================
+   COMMUNITY — RESPONSIVE WIDTH FIX
+   ========================================================= */
+
+.community-page,
+.community-layout,
+.community-main,
+.community-right,
+.user-grid {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.community-layout {
+  width: 100%;
+}
+
+.community-main {
+  overflow: hidden;
+}
+
+.community-topbar {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.community-search {
+  min-width: 0;
+}
+
+.community-tabs {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.user-grid {
+  width: 100%;
+}
+
+.user-card {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.user-card * {
+  max-width: 100%;
+}
+
+.community-right {
+  min-width: 0;
+  max-width: 100%;
+}
+
+
+/* Small laptop / tablet */
+
+@media (max-width: 1050px) {
+  .community-layout {
+    grid-template-columns:
+      180px
+      minmax(0, 1fr);
+
+    width: 100%;
+  }
+
+  .community-right {
+    display: none;
+  }
+}
+
+
+/* Smaller tablet */
+
+@media (max-width: 800px) {
+  .community-page {
+    padding: 14px;
+  }
+
+  .community-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .community-sidebar {
+    display: none;
+  }
+
+  .community-main {
+    width: 100%;
+  }
+
+  .community-topbar {
+    flex-wrap: wrap;
+  }
+
+  .community-search {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .community-tabs {
+    width: 100%;
+    overflow-x: auto;
+    flex-shrink: 1;
+  }
+
+  .community-sort-select {
+    max-width: 100%;
+  }
+}
+
+
+/* Phone */
+
+@media (max-width: 600px) {
+  .community-page {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .community-layout {
+    width: 100%;
+  }
+
+  .community-hero {
+    width: 100%;
+
+    padding: 22px 18px;
+  }
+
+  .community-topbar {
+    gap: 8px;
+  }
+
+  .community-tabs {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .community-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .community-sort-select {
+    width: 100%;
+  }
+
+  .user-grid {
+    grid-template-columns: 1fr;
+  }
+}

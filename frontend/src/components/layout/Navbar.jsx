@@ -209,7 +209,6 @@ const submitSearch = async (e) => {
             </NavLink>
 
             <NavLink to="/community" onClick={() => setMobileOpen(false)}>
-              <Heart size={15} />
               <span>Community</span>
             </NavLink>
 

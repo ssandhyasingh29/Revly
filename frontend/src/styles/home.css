@@ -1,202 +1,4 @@
 /* =================================
-   NAVBAR
-================================= */
-
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-
-  background: rgba(255, 255, 255, 0.97);
-  border-bottom: 1px solid #f4e4e9;
-}
-
-.nav-inner {
-  width: min(1200px, calc(100% - 40px));
-  min-height: 76px;
-  margin: auto;
-
-  display: flex;
-  align-items: center;
-  gap: 28px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-
-  min-width: 180px;
-}
-
-.brand-mark {
-  width: 34px;
-  height: 34px;
-
-  display: grid;
-  place-items: center;
-
-  background: var(--pink-light);
-  color: var(--pink);
-
-  border-radius: 50%;
-  font-size: 22px;
-}
-
-.brand strong {
-  display: block;
-  color: var(--pink);
-
-  font-family: Georgia, serif;
-  font-size: 23px;
-}
-
-.brand small {
-  display: block;
-  color: #888;
-  font-size: 8px;
-}
-
-.nav-content {
-  flex: 1;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 20px;
-}
-
-.main-nav {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.main-nav a {
-  font-size: 13px;
-  font-weight: 600;
-  color: #333;
-
-  padding: 8px 4px;
-
-  transition: 0.2s ease;
-}
-
-.main-nav a:hover,
-.main-nav a.active {
-  color: var(--pink);
-}
-
-.nav-search {
-  width: 250px;
-
-  display: flex;
-  align-items: center;
-
-  border: 1px solid #ecdce2;
-  background: white;
-  border-radius: 8px;
-
-  overflow: hidden;
-}
-
-.nav-search input {
-  flex: 1;
-
-  border: none;
-  outline: none;
-
-  padding: 9px 12px;
-
-  font-size: 11px;
-}
-
-.nav-search button {
-  background: transparent;
-  color: var(--pink);
-
-  padding: 8px 10px;
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.nav-actions > button {
-  position: relative;
-
-  width: 34px;
-  height: 34px;
-
-  display: grid;
-  place-items: center;
-
-  background: transparent;
-  color: #555;
-}
-
-.nav-actions > button b {
-  position: absolute;
-  top: -2px;
-  right: -1px;
-
-  min-width: 15px;
-  height: 15px;
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 50%;
-
-  background: var(--pink);
-  color: white;
-
-  font-size: 8px;
-}
-
-.auth-buttons {
-  display: flex;
-  gap: 8px;
-}
-
-.auth-buttons button {
-  padding: 8px 14px;
-
-  border-radius: 7px;
-
-  background: white;
-  color: var(--pink);
-
-  border: 1px solid var(--pink-border);
-
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.auth-buttons button:last-child {
-  background: var(--pink);
-  color: white;
-}
-
-
-/* =================================
-   MOBILE MENU
-================================= */
-
-.mobile-menu {
-  display: none;
-
-  margin-left: auto;
-
-  background: transparent;
-  color: var(--pink);
-}
-
-
-/* =================================
    HERO
 ================================= */
 
@@ -1632,5 +1434,335 @@
 
   .blog-heading {
     align-items: flex-end;
+  }
+}
+
+
+
+
+/* ---------------------------------------------------------
+   NAVBAR
+   home.css contains legacy navbar rules, so these overrides
+   keep the navbar responsive on every page.
+--------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+  .navbar {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .navbar .nav-inner {
+    width: 100%;
+    max-width: 1280px;
+
+    min-height: 70px;
+
+    margin: 0 auto;
+    padding: 0 20px;
+
+    gap: 15px;
+
+    box-sizing: border-box;
+  }
+
+  .navbar .brand {
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .navbar .nav-content {
+    display: none;
+  }
+
+  .navbar .mobile-menu {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-left: auto;
+
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    background: transparent;
+    color: var(--pink);
+
+    cursor: pointer;
+  }
+
+  .navbar .nav-content.open {
+    position: absolute;
+
+    top: 70px;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 18px;
+
+    padding: 20px;
+
+    background: #ffffff;
+
+    border-top: 1px solid #f0e5e9;
+    border-bottom: 1px solid #f0e5e9;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+
+    z-index: 9999;
+
+    box-sizing: border-box;
+  }
+
+  .navbar .nav-content.open .main-nav {
+    display: flex;
+
+    flex-direction: column;
+    align-items: stretch;
+
+    width: 100%;
+
+    gap: 3px;
+  }
+
+  .navbar .nav-content.open .main-nav a {
+    width: 100%;
+    padding: 13px 8px;
+
+    box-sizing: border-box;
+  }
+
+  .navbar .nav-content.open .nav-search {
+    width: 100%;
+    max-width: none;
+
+    order: 2;
+  }
+
+  .navbar .nav-content.open .nav-actions {
+    width: 100%;
+
+    order: 3;
+
+    flex-wrap: wrap;
+  }
+
+  .navbar .nav-content.open .auth-buttons {
+    width: 100%;
+  }
+
+  .navbar .nav-content.open .auth-buttons button {
+    flex: 1;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   HOME HERO
+--------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .hero {
+    width: calc(100% - 30px);
+
+    min-height: auto;
+
+    padding: 32px 24px;
+
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 25px;
+  }
+
+  .hero-copy {
+    width: 100%;
+  }
+
+  .hero-visual {
+    width: 100%;
+    height: 300px;
+
+    justify-content: center;
+  }
+
+  .hero-image-wrap {
+    width: min(100%, 360px);
+    height: 300px;
+  }
+
+  .hero-bubble {
+    right: 0;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .hero {
+    width: calc(100% - 24px);
+
+    padding: 25px 18px;
+
+    border-radius: 18px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero h2 {
+    font-size: 24px;
+  }
+
+  .hero-actions {
+    flex-wrap: wrap;
+  }
+
+  .hero-stats {
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .hero-visual {
+    height: 250px;
+  }
+
+  .hero-image-wrap {
+    width: min(100%, 300px);
+    height: 250px;
+  }
+
+  .hero-bubble {
+    display: none;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   CATEGORY STRIP
+--------------------------------------------------------- */
+
+@media (max-width: 1000px) {
+  .category-strip {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .category-strip {
+    width: calc(100% - 24px);
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+  }
+
+  .category-strip button {
+    min-height: 68px;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   TRENDING PRODUCTS
+--------------------------------------------------------- */
+
+@media (max-width: 1000px) {
+  .product-grid {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .product-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+  }
+
+  .product-image {
+    height: 130px;
+  }
+}
+
+@media (max-width: 420px) {
+  .product-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .product-image {
+    height: 115px;
+  }
+
+  .product-card {
+    padding: 8px;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   TOP REVIEW + TOP REVIEWERS
+--------------------------------------------------------- */
+
+.home-reviews-split {
+  min-width: 0;
+}
+
+@media (max-width: 800px) {
+  .home-reviews-split {
+    grid-template-columns: 1fr;
+  }
+
+  .review-body {
+    gap: 12px;
+  }
+
+  .review-body > img {
+    width: 90px;
+    height: 110px;
+  }
+}
+
+@media (max-width: 600px) {
+  .review-card,
+  .reviewers-panel {
+    width: 100%;
+    min-width: 0;
+
+    padding: 16px;
+  }
+
+  .reviewers-heading {
+    flex-wrap: wrap;
+  }
+
+  .reviewers-title h2 {
+    font-size: 21px;
+  }
+
+  .reviewers-view-all {
+    min-width: 90px;
+  }
+
+  .reviewers-arrow-left {
+    left: -8px;
+  }
+
+  .reviewers-arrow-right {
+    right: -8px;
   }
 }

@@ -545,3 +545,187 @@
 
   font-size: 11px;
 }
+
+/* =========================================================
+   RESPONSIVE NAVBAR
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .nav-inner {
+    width: 100%;
+    max-width: 1280px;
+    min-height: 70px;
+
+    padding: 0 20px;
+    gap: 15px;
+  }
+
+  .brand {
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .brand-text {
+    min-width: 0;
+  }
+
+  .brand-text strong {
+    font-size: 25px;
+  }
+
+  .brand-text small {
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Desktop navigation hide */
+  .nav-content {
+    display: none;
+  }
+
+  /* Hamburger */
+  .mobile-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: auto;
+
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    border: none;
+    background: transparent;
+    color: #e9578f;
+
+    cursor: pointer;
+  }
+
+  /* Open mobile menu */
+  .nav-content.open {
+    position: absolute;
+
+    top: 70px;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+    max-width: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 18px;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border-top: 1px solid #f0e5e9;
+    border-bottom: 1px solid #f0e5e9;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+
+    z-index: 9999;
+  }
+
+  /* Menu links */
+  .nav-content.open .main-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 4px;
+
+    width: 100%;
+  }
+
+  .nav-content.open .main-nav a {
+    display: inline-flex;
+    align-items: center;
+
+    width: 100%;
+    min-height: 40px;
+
+    padding: 10px 8px;
+
+    box-sizing: border-box;
+
+    border-radius: 8px;
+  }
+
+  .nav-content.open .main-nav a:hover {
+    background: #fff4f7;
+  }
+
+  /* Search */
+  .nav-content.open .nav-search {
+    width: 100%;
+    max-width: none;
+
+    order: 2;
+  }
+
+  /* Message / notification / Login / Register */
+  .nav-content.open .nav-actions {
+    width: 100%;
+
+    order: 3;
+
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .nav-content.open .auth-buttons {
+    width: 100%;
+
+    display: flex;
+
+    gap: 10px;
+  }
+
+  .nav-content.open .auth-buttons button {
+    flex: 1;
+  }
+
+  .nav-search-results {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .nav-inner {
+    min-height: 64px;
+    padding: 0 14px;
+  }
+
+  .brand-text strong {
+    font-size: 23px;
+  }
+
+  .brand-text small {
+    display: none;
+  }
+
+  .mobile-menu {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav-content.open {
+    top: 64px;
+    padding: 16px;
+  }
+}

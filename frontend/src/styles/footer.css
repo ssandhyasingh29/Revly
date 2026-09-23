@@ -1,5 +1,7 @@
 .footer {
-  width: min(1400px, 94%);
+  width: min(1400px, calc(100% - 40px));
+  max-width: 1400px;
+
   margin: 50px auto 0;
   padding: 35px 20px;
 
@@ -8,10 +10,11 @@
   justify-content: space-between;
   gap: 30px;
 
+  box-sizing: border-box;
+
   border-top: 1px solid #f0dce3;
   color: #555;
 }
-
 .footer-brand {
   min-width: 220px;
 }
